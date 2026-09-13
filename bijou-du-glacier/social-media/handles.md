@@ -45,6 +45,11 @@ is lucky and worth defending — several of the fallbacks below do not fit.
 *X's 15-character limit is the binding constraint on this whole exercise. If `bijouduglacier`
 is unavailable on X, decide there first, then take the same fallback everywhere else.*
 
+> ⚠️ **`@du_glacier` already exists on X** and belongs to Residence du Glacier — the building
+> your apartment is in, run by the developer. It is not yours and not a competitor. Worth
+> following, and worth knowing about in case a guest tags it by mistake. Don't pick a handle
+> close enough to be confused with it.
+
 ## Facebook
 
 | Rank | Handle | Notes |
@@ -93,8 +98,14 @@ Do this in one sitting, and in this order — the constraint tightens as you go:
 2. **Instagram second.** The highest-value channel for this property; check both
    `bijouduglacier` and the `.saasfee` variant.
 3. **TikTok**, then **Pinterest**, then the **Facebook Page** username.
-4. Record the final handles in one place and add them to the website footer and to your
-   Airbnb/Booking.com host profile where the platform permits it.
+4. Record the final handles in one place and add them to the website footer.
+
+Once you have them, go straight to **`profiles-and-bios.md`** — it has the exact bio text,
+link field and profile image for each platform, ready to paste.
+
+> **Don't** add your website or social links to your Airbnb or Booking.com listing. It
+> breaches both platforms' terms and risks delisting. Linking from your own social accounts to
+> your site is fine; it's the direction into the OTAs that's restricted.
 
 If your first choice is taken on exactly one platform, take the highest-ranked fallback **on
 that platform only** — don't downgrade the other four to match a single loss.

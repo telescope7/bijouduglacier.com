@@ -1,197 +1,214 @@
-# Bijou du Glacier — X / Twitter post series
+# X / Twitter — 14 posts
 
-Fourteen ready-to-post updates. Each is under 280 characters including hashtags and the link.
-Numbering is for your scheduler — they do not need to run in this order.
+Rewritten 13 September 2026 against the live site. Every link now goes to the relevant page
+rather than the bare domain, the facts match the site, and the direct-booking wording is the
+compliant version.
 
-Voice: premium but warm. Specific over superlative. Never shouty, never "AMAZING DEAL".
+Each post is under 280 characters. X counts any URL as 23 characters regardless of length;
+the counts below are raw, so every one has headroom.
 
-**Suggested image to attach** is listed under each post, using the filenames in `website/images/`.
-
----
-
-### 1 — Scene-setting / winter
-> No cars. No engines. Just the sound of boots on snow and the Allalin glacier lit pink at seven in the morning.
->
-> Four bedrooms, eight guests, a short walk from the lifts.
->
-> bijouduglacier.com
->
-> #SaasFee #Valais #LuxuryChalet
-
-*Image: hero-exterior.jpg* · 221 characters
+Copy everything inside the ``` fence. The image line tells you what to attach.
 
 ---
+
+### 1 — Winter scene-setting
+**Image:** `images/instagram/ig-village-carfree.jpg`
+
+```
+No cars. No engines. Just boots on new snow and the Mischabel face going gold before the village does.
+
+Four bedrooms, eight guests, four minutes to the slopes.
+
+https://bijouduglacier.com
+
+#SaasFee #Valais #LuxuryChalet
+```
 
 ### 2 — The direct-booking case
-> Same apartment on every platform. Different price.
->
-> Booking Bijou du Glacier direct skips the platform commission entirely — which means the best rate we can offer goes to you, not to a booking site.
->
-> bijouduglacier.com
->
-> #SaasFee #Switzerland #BookDirect
+**Image:** `images/instagram/ig-living-kitchen.jpg`
 
-*Image: dining-room.jpg* · 254 characters
+> Note: "identical nightly rate", not "cheaper". This is the rate-parity-safe version and it
+> matches the site. Don't reword it.
 
----
+```
+Same apartment on every platform. Same nightly rate.
 
-### 3 — Year-round skiing hook
-> Most alpine resorts close their lifts in July.
->
-> Saas-Fee takes the Metro Alpin up inside the mountain and keeps skiing on the glacier.
->
-> Stay at the foot of it. bijouduglacier.com
->
-> #SaasFee #GlacierSkiing #Valais #Switzerland
+What differs is what sits on top: the platforms add their service fee to your total. Booking direct doesn't.
 
-*Image: glacier-view.jpg* · 224 characters
+https://bijouduglacier.com/en/book/
 
----
+#SaasFee #Switzerland #BookDirect
+```
+
+### 3 — Year-round skiing
+**Image:** `images/instagram/ig-glacier-skiing.jpg`
+
+```
+Most alpine resorts close the lifts in July.
+
+Saas-Fee runs the Metro Alpin up inside the mountain to the Allalin glacier at 3,500 m and keeps skiing.
+
+https://bijouduglacier.com/en/saas-fee/
+
+#SaasFee #GlacierSkiing #Valais #Switzerland
+```
 
 ### 4 — The group benefit
-> The problem with renting a chalet for eight: someone always ends up on a sofa bed.
->
-> Bijou du Glacier has four real bedrooms, four king-size beds, and a table long enough that nobody eats standing up.
->
-> bijouduglacier.com
->
-> #SaasFee #LuxuryChalet #Alps
+**Image:** `images/instagram/ig-master-bedroom.jpg`
 
-*Image: master-bedroom.jpg* · 249 characters
+```
+The problem with renting a place for eight: someone always ends up on the sofa.
 
----
+Four bedrooms here. Four king beds. Three bathrooms. A table long enough that nobody eats standing up.
+
+https://bijouduglacier.com/en/apartment/
+
+#SaasFee #LuxuryChalet #Alps
+```
 
 ### 5 — Car-free village
-> Saas-Fee is car-free. You leave the car at the edge of the village and you don't think about it again for a week.
->
-> If you have children, that single fact changes the entire holiday.
->
-> bijouduglacier.com
->
-> #SaasFee #Valais #FamilyTravel #Switzerland
+**Image:** `images/instagram/ig-village-carfree.jpg`
 
-*Image: hero-exterior.jpg* · 246 characters
+```
+Saas-Fee is car-free. You leave the car at the village entrance and don't think about it again for a week.
 
----
+With children, that single fact changes the entire holiday.
 
-### 6 — Design / interiors
-> Modern alpine, not carved-pine cliché.
->
-> Wide oak boards, pale stone, brushed brass, and windows that frame the mountains instead of competing with them. Newly renovated, top to bottom.
->
-> bijouduglacier.com
->
-> #SaasFee #InteriorDesign #LuxuryChalet
+https://bijouduglacier.com/en/saas-fee/
 
-*Image: living-room.jpg* · 244 characters
+#SaasFee #Valais #FamilyTravel #Switzerland
+```
 
----
+### 6 — Design
+**Image:** `images/instagram/ig-robe-wardrobe.jpg`
 
-### 7 — Summer hiking
-> Summer in Saas-Fee: larch paths, meadows below, ice above, and the lifts still running for anyone who'd rather not climb to the glacier on foot.
->
-> Long days. Cool nights. Half the crowds.
->
-> bijouduglacier.com
->
-> #SaasFee #Hiking #Valais #Switzerland
+```
+Modern alpine, not carved-pine cliché.
 
-*Image: balcony-view.jpg* · 245 characters
+Wide oak boards, pale stone, brushed brass, and windows that frame the mountains instead of competing with them. Renovated top to bottom.
 
----
+https://bijouduglacier.com/en/apartment/
+
+#SaasFee #InteriorDesign #LuxuryChalet
+```
+
+### 7 — Summer
+**Image:** `images/pinterest/pin-balcony-summer.jpg`
+
+```
+Summer in Saas-Fee: larch paths, meadows below, ice above, and the lifts still running for anyone who'd rather not climb to the glacier.
+
+Long days. Cool nights. Half the crowds.
+
+https://bijouduglacier.com/en/saas-fee/
+
+#SaasFee #Hiking #Valais #Switzerland
+```
 
 ### 8 — Walkability
-> Everything in Saas-Fee is a walk.
->
-> The lifts are a walk. Dinner is a walk. The bakery is a walk. Nobody has to drive, so nobody has to stay sober, and nobody has to be the one who drives.
->
-> bijouduglacier.com
->
-> #SaasFee #Valais #Switzerland
+**Image:** `images/instagram/ig-sq-village.jpg`
 
-*Image: kitchen.jpg* · 238 characters
+```
+Four minutes to the slopes. Twenty metres to the supermarket.
+
+In a village where nobody drives, being central isn't a convenience. It's the shape of the whole week.
+
+https://bijouduglacier.com/en/saas-fee/
+
+#SaasFee #Valais #Switzerland
+```
+
+### 9 — Booking-window nudge *(run Sept–Oct)*
+**Image:** `images/instagram/ig-master-bedroom.jpg`
+
+```
+Saas-Fee's good weeks — Christmas, New Year, February half-terms — go to people who booked them a year ago.
+
+If you're planning a group trip this winter, this is the month.
+
+https://bijouduglacier.com/en/book/
+
+#SaasFee #SkiHoliday #Alps
+```
+
+### 10 — The evening
+**Image:** `images/instagram/ig-swiss-blanket.jpg`
+
+```
+The bit nobody photographs: in at four, boots off, kettle on, everyone quiet for twenty minutes while the light goes gold on the summits outside.
+
+https://bijouduglacier.com
+
+#SaasFee #Valais #LuxuryChalet #Alps
+```
+
+### 11 — Shoulder season *(run Mar–Apr)*
+**Image:** `images/instagram/ig-glacier-skiing.jpg`
+
+```
+Late April in Saas-Fee: the glacier is still skiing, the terraces are open, and the village has emptied out.
+
+Comfortably the best-value week of the ski year.
+
+https://bijouduglacier.com/en/saas-fee/
+
+#SaasFee #SpringSkiing #Valais #Switzerland
+```
+
+### 12 — The detail
+**Image:** `images/instagram/ig-sq-bathroom.jpg`
+
+```
+Four king beds on Hypnos mattresses. Three bathrooms — two with deep baths, one walk-in shower. A kitchen you'd actually cook in.
+
+It's a holiday apartment that isn't furnished like one.
+
+https://bijouduglacier.com/en/apartment/
+
+#SaasFee #LuxuryChalet #Switzerland
+```
+
+### 13 — The floor plan
+**Image:** `images/instagram/ig-sq-floorplan.jpg`
+
+```
+Every place that sleeps eight claims four double bedrooms. Here's ours to scale, so you can check.
+
+No box room. No mezzanine. Four windows, four king beds, three bathrooms.
+
+https://bijouduglacier.com/en/apartment/
+
+#SaasFee #Valais #GroupTravel #Alps
+```
+
+### 14 — Honest about what it isn't
+**Image:** `images/instagram/ig-village-carfree.jpg`
+
+```
+Bijou du Glacier is not ski-in, ski-out. We'd rather say so than let you find out on arrival.
+
+It's four minutes on foot, in the middle of a village with no cars in it. That trade is the whole point.
+
+https://bijouduglacier.com/en/apartment/
+
+#SaasFee #Valais #SkiChalet
+```
 
 ---
 
-### 9 — Booking-window nudge (run Sept–Oct)
-> Saas-Fee's good weeks in February and at New Year go early.
->
-> If you're planning a group ski trip this winter, this is the month to lock the dates.
->
-> Four bedrooms, sleeps eight. Book direct: bijouduglacier.com
->
-> #SaasFee #SkiHoliday #Alps
+## Notes
 
-*Image: bedroom-2.jpg* · 236 characters
+**Always attach an image.** Photo posts get several times the reach of text-only ones, and the
+photography is your strongest asset.
 
----
+**Every link points at your own domain** — never at an Airbnb or Booking.com listing. Social
+traffic should always land on the surface you own. Note also that these link to *pages*, not
+to `/book-direct`, which is an outbound redirect that would skip your site entirely.
 
-### 10 — Sensory / evening
-> The bit nobody photographs: coming in at four, boots off, kettle on, everyone quiet for twenty minutes while the light goes gold on the peaks outside the window.
->
-> bijouduglacier.com
->
-> #SaasFee #Valais #LuxuryChalet #Alps
+**Don't run 2, 9 and 13 in the same week.** They're all asking for the sale. Space them at
+least ten days apart.
 
-*Image: living-room.jpg* · 219 characters
+**Seasonal:** 3 and 7 for May–August. 9 for September–November. 11 for March–April. The rest
+are evergreen.
 
----
-
-### 11 — Shoulder-season value
-> Late April in Saas-Fee: the glacier is still skiing, the terraces are open, and the village has emptied out.
->
-> It is comfortably the best-value week of the ski year.
->
-> bijouduglacier.com
->
-> #SaasFee #SpringSkiing #Valais #Switzerland
-
-*Image: glacier-view.jpg* · 229 characters
-
----
-
-### 12 — Small luxury detail
-> Four king-size beds. Deep stone bathrooms with a proper bathtub. A kitchen you'd actually cook in.
->
-> It's a holiday apartment, but it isn't furnished like one.
->
-> bijouduglacier.com
->
-> #SaasFee #LuxuryChalet #Switzerland
-
-*Image: bathroom.jpg* · 215 characters
-
----
-
-### 13 — Repeat-guest / relationship
-> Our best weeks are booked by people who came last year.
->
-> If you've stayed at Bijou du Glacier before, message us before you book anywhere else — we hold dates for returning guests first.
->
-> bijouduglacier.com
->
-> #SaasFee #Valais #Alps
-
-*Image: dining-room.jpg* · 230 characters
-
----
-
-### 14 — Christmas / New Year
-> Eight people, four bedrooms, one very long walnut table, and a car-free village outside the door.
->
-> Christmas and New Year in Saas-Fee, booked direct.
->
-> bijouduglacier.com
->
-> #SaasFee #Christmas #Valais #LuxuryChalet
-
-*Image: dining-room.jpg* · 212 characters
-
----
-
-## Notes for scheduling
-
-- **Always attach an image.** Posts with photos get several times the engagement of text-only posts on X, and this property's photography is its strongest asset.
-- **Rotate the link.** Every post points at `bijouduglacier.com` rather than an OTA listing. That is deliberate — social traffic should always land on the surface you own.
-- **Do not post 2, 9 and 13 in the same week.** They are all conversion posts; running them close together reads as pushy. Space them at least ten days apart.
-- Posts 3, 7 and 11 are seasonal — schedule 3 and 7 for May–August, 9 and 14 for September–November, 11 for March–April.
+**German versions** of four of these are at the bottom of `captions-german.md`.

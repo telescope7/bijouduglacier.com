@@ -53,10 +53,18 @@ bijou-du-glacier/
 │   ├── content_en|fr|de|it.py   ← the copy in code form. You should never need to open these.
 │   └── audit.py                 ← pre-flight checks. Run before every deploy.
 ├── _backup/                     ← the original one-page site, untouched
-├── social-media/
+├── social-media/                ← START AT ITS README.md. All copy-paste ready.
+│   ├── README.md                ← the hub: link map, what to do first, biggest wins
+│   ├── profiles-and-bios.md     ← exact bio text + link field for all 5 platforms
+│   ├── handles.md               ← ranked handle candidates, 5 platforms
+│   ├── captions-instagram.md    ← 9 long-form IG/Facebook captions, English
+│   ├── captions-german.md       ← 8 German posts. Saas-Fee's biggest market.
+│   ├── pinterest-pins.md        ← 8 pins: title, description, board, link
+│   ├── reels-tiktok.md          ← 6 short-video posts cut from the walkthrough
 │   ├── tweets.md                ← 14 post-ready X/Twitter posts
-│   ├── captions-instagram.md    ← 7 long-form IG/Facebook captions
-│   └── handles.md               ← ranked handle candidates, 5 platforms
+│   ├── posting-calendar.md      ← 8 weeks, mapped to the files above
+│   ├── images/                  ← 23 pre-cropped files, correct size per platform
+│   └── video/                   ← 6 clips cut from the walkthrough, watermark-free, silent
 └── strategy/
     └── marketing-plan.md        ← positioning, funnel, rates, reviews, 4-week calendar
 ```
@@ -429,7 +437,45 @@ Register in this order, because the constraint tightens as you go:
 
 If your first choice is taken on one platform only, take that platform's top fallback — don't downgrade the other four to match.
 
-Then: **add the handles to the site footer** in `index.html`, and write them down somewhere you'll find them again.
+Then: **add the handles to the site footer** (in `tools/build_site.py`, not the generated
+HTML), and write them down somewhere you'll find them again.
+
+### Step 5b — Set the profiles up properly, before posting anything
+
+Open **`social-media/profiles-and-bios.md`**. It has the exact bio text, name field, category
+and link for all five platforms, already written to length. Paste, don't compose.
+
+Two things in there that are easy to miss and both free:
+
+- Switch Instagram and TikTok to **Business** accounts — it's what unlocks the bio link on
+  TikTok and Insights on both.
+- **Claim your domain on Pinterest.** It puts your logo on every pin linking to you and turns
+  on pin analytics. Same DNS-TXT dance as Search Console.
+
+### Step 5c — Post something
+
+`social-media/README.md` is the hub. The short version of what it says:
+
+| Priority | What | Why |
+|---|---|---|
+| 1 | **German posts** (`captions-german.md`) | Saas-Fee is in German-speaking Wallis. You built a whole German site and nothing pointed at it. |
+| 2 | **Pinterest** (`pinterest-pins.md`) | A pin works for 18 months; an IG post dies in 2 days. Images are pre-cut and ready. |
+| 3 | **The walkthrough video** (`reels-tiktok.md`) | Already shot and paid for. Six clips are cut, watermark-free and silent, in `social-media/video/`. |
+| 4 | Instagram (`captions-instagram.md`) | Your main channel. |
+| 5 | X (`tweets.md`) | Cheap to keep up, lowest booking volume. |
+
+Then put week 1 of `posting-calendar.md` into a scheduler.
+
+> **Two corrections were made to the old social copy that matter.** The previous version
+> claimed booking direct gets you a *lower nightly rate* — that implies breaking rate parity
+> with Booking.com. Every file now uses the site's wording: the nightly rate is **identical**,
+> and what you save is the platform's service fee on top. If you posted the old version
+> anywhere, edit or delete it.
+>
+> The walkthrough video also carries the property manager's **VOLLA** watermark in its first
+> and last three seconds, and a music track you probably don't hold rights to. The clips in
+> `social-media/video/` are cut from the clean middle and have the audio stripped — use those,
+> not the master file.
 
 ---
 
