@@ -1,4 +1,8 @@
 # Bijou du Glacier — Saas-Fee
+#
+# Everything here is open to everyone. The only closed paths are the backup of
+# the old site and the booking redirects.
+
 User-agent: *
 Allow: /
 Disallow: /_backup/
@@ -7,6 +11,118 @@ Disallow: /_backup/
 # SaasFeeHolidays, Airbnb and Booking.com. There is no page behind them. Left
 # crawlable they would be indexed as thin redirects competing with the real
 # booking page, so keep them out.
+Disallow: /go/
+Disallow: /book-direct
+
+# OpenAI — ChatGPT search index
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# OpenAI — fetches a page when a user asks for it
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# OpenAI — training
+User-agent: GPTBot
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Anthropic — Claude search index
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Anthropic — user-initiated fetch
+User-agent: Claude-User
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Anthropic — training
+User-agent: ClaudeBot
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Perplexity — index for cited answers
+User-agent: PerplexityBot
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Perplexity — user-initiated fetch
+User-agent: Perplexity-User
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Google — AI Overviews and Gemini grounding
+User-agent: Google-Extended
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Apple — Siri and Spotlight
+User-agent: Applebot
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Apple — Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Common Crawl — feeds many downstream datasets
+User-agent: CCBot
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Amazon — Alexa and search
+User-agent: Amazonbot
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Meta — AI products
+User-agent: meta-externalagent
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# Microsoft — Bing and Copilot
+User-agent: Bingbot
+Allow: /
+Disallow: /_backup/
+Disallow: /go/
+Disallow: /book-direct
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /_backup/
 Disallow: /go/
 Disallow: /book-direct
 

@@ -911,7 +911,53 @@ def build_sitemap():
     return "\n".join(out) + "\n"
 
 
+# IndexNow key. Public by design — it is hosted in the clear at the site root
+# and proves only that whoever submits URLs also controls the domain. Not a
+# secret; do not treat it as one. Changing it means re-hosting the new key file.
+INDEXNOW_KEY = "c13d276a206e5cd14dbf8988027af48b"
+
+# Every crawler we care about, named explicitly.
+#
+# Why name them when "User-agent: *" already allows everything: a crawler that
+# finds a group matching its own token obeys ONLY that group and ignores the
+# wildcard entirely. So the day someone adds a Disallow to the * group, these
+# stay allowed. It also puts the decision on the record instead of leaving it
+# to a default.
+#
+# The usual 2026 advice is to allow the search/retrieval bots and block the
+# training ones. We allow all of them, deliberately. There is no IP here worth
+# protecting — it is marketing copy about one apartment — and being quotable in
+# an AI travel answer is a booking channel, not a cost. Revisit only if that
+# stops being true.
+AI_CRAWLERS = [
+    ("OAI-SearchBot",    "OpenAI — ChatGPT search index"),
+    ("ChatGPT-User",     "OpenAI — fetches a page when a user asks for it"),
+    ("GPTBot",           "OpenAI — training"),
+    ("Claude-SearchBot", "Anthropic — Claude search index"),
+    ("Claude-User",      "Anthropic — user-initiated fetch"),
+    ("ClaudeBot",        "Anthropic — training"),
+    ("PerplexityBot",    "Perplexity — index for cited answers"),
+    ("Perplexity-User",  "Perplexity — user-initiated fetch"),
+    ("Google-Extended",  "Google — AI Overviews and Gemini grounding"),
+    ("Applebot",         "Apple — Siri and Spotlight"),
+    ("Applebot-Extended","Apple — Apple Intelligence"),
+    ("CCBot",            "Common Crawl — feeds many downstream datasets"),
+    ("Amazonbot",        "Amazon — Alexa and search"),
+    ("meta-externalagent", "Meta — AI products"),
+    ("Bingbot",          "Microsoft — Bing and Copilot"),
+    ("DuckDuckBot",      "DuckDuckGo"),
+]
+
+_AI_BLOCK = "\n\n".join(
+    "# %s\nUser-agent: %s\nAllow: /\nDisallow: /_backup/\nDisallow: /go/\nDisallow: /book-direct"
+    % (why, tok) for tok, why in AI_CRAWLERS
+)
+
 ROBOTS = """# Bijou du Glacier — Saas-Fee
+#
+# Everything here is open to everyone. The only closed paths are the backup of
+# the old site and the booking redirects.
+
 User-agent: *
 Allow: /
 Disallow: /_backup/
@@ -923,8 +969,10 @@ Disallow: /_backup/
 Disallow: /go/
 Disallow: /book-direct
 
+%s
+
 Sitemap: %s/sitemap.xml
-""" % SITE["origin"]
+""" % (_AI_BLOCK, SITE["origin"])
 
 REDIRECTS = """# Edge redirect for Cloudflare Pages / Netlify.
 # Sends the bare domain to the English homepage, which is the hreflang x-default.
@@ -950,6 +998,9 @@ def main():
     for rel, content in (("index.html", build_root()),
                          ("sitemap.xml", build_sitemap()),
                          ("robots.txt", ROBOTS),
+                         # IndexNow verification. Must be reachable at the site
+                         # root and contain the key and nothing else.
+                         ("%s.txt" % INDEXNOW_KEY, INDEXNOW_KEY + "\n"),
                          ("_redirects", REDIRECTS)):
         with open(os.path.join(WEB, rel), "w", encoding="utf-8") as fh:
             fh.write(content)
