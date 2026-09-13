@@ -1,0 +1,11 @@
+; Which server to deploy to.
+;
+; This is the public IPv4 address of your Linode. Use the ADDRESS, not a
+; hostname: the playbook compares it against what your domain resolves to,
+; and fails early if the DNS is not pointing here yet.
+;
+; Copy this to inventory.ini and put your own address in. inventory.ini
+; is gitignored, so your server is not advertised in a public repo.
+
+[web]
+bijou ansible_host=203.0.113.10 ansible_user=root

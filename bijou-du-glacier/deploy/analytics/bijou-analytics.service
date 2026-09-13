@@ -1,0 +1,14 @@
+[Unit]
+Description=Regenerate the Bijou du Glacier traffic report from the nginx logs
+Documentation=file:///root/analytics-README.md
+After=nginx.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/goaccess-report.sh
+Nice=10
+# Nothing here touches the network or the site. It reads two log files and
+# writes one HTML file.
+ProtectSystem=full
+PrivateDevices=yes
+NoNewPrivileges=yes

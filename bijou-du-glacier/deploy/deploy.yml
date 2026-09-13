@@ -1,0 +1,412 @@
+---
+# =============================================================================
+# Bijou du Glacier — deploy the site to a fresh Ubuntu server.
+#
+#     cd deploy
+#     ansible-playbook -i inventory.ini deploy.yml
+#
+# Installs nginx, uploads the site, opens the firewall, and gets an HTTPS
+# certificate from Let's Encrypt. Run it as often as you like: the certificate
+# is only requested once, and every later run simply re-uploads the site.
+#
+# There is nothing to edit below except the two lines marked EDIT THESE.
+# =============================================================================
+
+- name: Deploy Bijou du Glacier
+  hosts: web
+  become: true
+  gather_facts: true
+
+  vars:
+    # The domain is the point of the repository, so it lives here. The things
+    # that should NOT be in a public repo — your email and your server's
+    # address — live in vars.yml and inventory.ini, both of which are
+    # gitignored. Copy the .example files alongside them to get started.
+    domain: bijouduglacier.com
+    email: ""                       # set in vars.yml
+
+    site_src: "{{ playbook_dir }}/../website"
+    webroot: "/var/www/{{ domain }}"
+    acme_root: /var/www/certbot
+    staging: "/var/www/.{{ domain }}.staging"
+    server_ip: "{{ ansible_host | default(inventory_hostname) }}"
+
+  tasks:
+
+    - name: Load local settings
+      # include_vars at task level outranks the play vars above, so whatever is
+      # in vars.yml wins. Kept out of git so a public clone carries no personal
+      # details; the assert below is what a fresh clone hits first.
+      ansible.builtin.include_vars:
+        file: vars.yml
+      become: false
+      delegate_to: localhost
+      tags: always
+
+    - name: Stop if the local settings have not been filled in
+      ansible.builtin.assert:
+        that:
+          - email | length > 0
+          - "'example.com' not in email"
+        fail_msg: >-
+          deploy/vars.yml needs your email address before Let's Encrypt can
+          issue a certificate. Run `cp vars.yml.example vars.yml` and edit it.
+      tags: always
+
+    # -- Pre-flight ---------------------------------------------------------
+    # Let's Encrypt proves you own the domain by fetching a file over HTTP, so
+    # it is worth knowing where the name points before we ask. But this runs on
+    # YOUR machine, and your machine's answer is not the whole world's answer:
+    # macOS caches negative DNS results, so a name that was not yet registered
+    # when you last looked can keep failing locally long after it works.
+    #
+    # So: ask three different ways and keep whatever any of them finds. Then
+    # only STOP if the name resolves somewhere that is not this server, which is
+    # a real problem. If nothing can resolve it from here, say so and carry on
+    # anyway, because Let's Encrypt is the opinion that actually counts.
+    #
+    # `--skip-tags dns` skips the whole thing.
+
+    - name: Resolve the domain from this machine
+      ansible.builtin.shell:
+        cmd: >-
+          (dig +short A {{ item }} 2>/dev/null;
+          host -t A {{ item }} 2>/dev/null | awk '/has address/ {print $NF}';
+          {{ ansible_playbook_python }} -c
+          "import socket,sys;print(socket.gethostbyname(sys.argv[1]))"
+          {{ item }} 2>/dev/null)
+          | grep -Eo '^[0-9]+(\.[0-9]+){3}$' | sort -u
+      register: dns
+      changed_when: false
+      failed_when: false
+      become: false
+      delegate_to: localhost
+      tags: dns
+      loop:
+        - "{{ domain }}"
+        - "www.{{ domain }}"
+
+    - name: Stop if the domain points at a different server
+      ansible.builtin.assert:
+        that: not item.stdout_lines or server_ip in item.stdout_lines
+        fail_msg: >-
+          {{ item.item }} resolves to {{ item.stdout_lines | join(", ") }},
+          but this playbook is pointed at {{ server_ip }}. One of the two is
+          wrong. Nothing has been changed on the server.
+        success_msg: "{{ item.item }} -> {{ item.stdout_lines | join(', ') }}"
+      when: item.stdout_lines | length > 0
+      loop: "{{ dns.results }}"
+      loop_control:
+        label: "{{ item.item }}"
+      tags: dns
+
+    - name: Note when a name cannot be resolved from here
+      ansible.builtin.debug:
+        msg: >-
+          Could not resolve {{ item.item }} from this machine. That is often
+          just your local resolver holding on to an old negative answer, so
+          this is not being treated as fatal. If the certificate step later
+          fails, this is the first thing to look at. On macOS:
+          sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+      when: item.stdout_lines | length == 0
+      loop: "{{ dns.results }}"
+      loop_control:
+        label: "{{ item.item }}"
+      tags: dns
+
+    - name: Check the site has actually been built
+      ansible.builtin.stat:
+        path: "{{ site_src }}/index.html"
+      register: built
+      become: false
+      delegate_to: localhost
+
+    - name: Stop if there is nothing to deploy
+      ansible.builtin.assert:
+        that: built.stat.exists
+        fail_msg: >-
+          {{ site_src }}/index.html is missing. Run `python3 build_site.py`
+          in the tools folder first.
+
+    # -- Packages and firewall ----------------------------------------------
+
+    - name: Install nginx, certbot and rsync
+      ansible.builtin.apt:
+        name:
+          - nginx
+          - certbot
+          - rsync
+          - ufw
+          - goaccess        # builds the traffic report from the nginx logs
+          - apache2-utils   # htpasswd, for the report's basic auth
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Allow SSH and web traffic through the firewall
+      # argv, not a plain string: "Nginx Full" is ONE ufw application profile
+      # with a space in its name, and a plain command string would be split on
+      # that space into two arguments.
+      ansible.builtin.command:
+        argv: ["ufw", "allow", "{{ item }}"]
+      register: ufw_allow
+      changed_when: "'Rule added' in ufw_allow.stdout"
+      loop:
+        - OpenSSH
+        - "Nginx Full"
+
+    - name: Check whether the firewall is already on
+      ansible.builtin.command: ufw status
+      register: ufw_status
+      changed_when: false
+
+    - name: Turn the firewall on
+      ansible.builtin.command: ufw --force enable
+      when: "'Status: inactive' in ufw_status.stdout"
+
+    # -- Upload the site ----------------------------------------------------
+    # Tar locally, unpack into a staging directory, then rsync across with
+    # --delete so files removed from the build also disappear from the server.
+    # Doing it this way means the live directory is never empty mid-deploy.
+
+    - name: Create the directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: "0755"
+      loop:
+        - "{{ webroot }}"
+        - "{{ acme_root }}"
+        - "{{ staging }}"
+
+    - name: Pack the site up
+      ansible.builtin.command:
+        argv: ["tar", "czf", "/tmp/bijou-site.tgz", "-C", "{{ site_src }}", "."]
+      become: false
+      delegate_to: localhost
+      changed_when: true
+
+    - name: Unpack it into the staging directory
+      ansible.builtin.unarchive:
+        src: /tmp/bijou-site.tgz
+        dest: "{{ staging }}"
+        owner: www-data
+        group: www-data
+
+    - name: Move it into place, removing anything no longer in the build
+      ansible.builtin.command:
+        argv: ["rsync", "-a", "--delete", "{{ staging }}/", "{{ webroot }}/"]
+      register: sync
+      changed_when: true
+
+    - name: Clear the staging directory
+      ansible.builtin.file:
+        path: "{{ staging }}"
+        state: absent
+
+    # -- nginx --------------------------------------------------------------
+
+    - name: Give AVIF a MIME type
+      # nginx only learned about image/avif in 1.21.4. Ubuntu 22.04 ships
+      # 1.18, which would serve every AVIF as a binary download.
+      ansible.builtin.lineinfile:
+        path: /etc/nginx/mime.types
+        regexp: '\bimage/avif\b'
+        insertafter: 'image/webp'
+        line: "    image/avif                                       avif;"
+
+    - name: Look for the analytics password file
+      # The playbook never creates this and never sees the password: you make
+      # it yourself with htpasswd (see deploy/analytics/README.md). Until it
+      # exists the /analytics/ location is left out of the config entirely, so
+      # a forgotten password step gives you a 404 rather than a traffic report
+      # open to the world.
+      ansible.builtin.stat:
+        path: /etc/nginx/analytics.htpasswd
+      register: htpasswd
+
+    - name: Look for an existing certificate
+      ansible.builtin.stat:
+        path: "/etc/letsencrypt/live/{{ domain }}/fullchain.pem"
+      register: cert
+
+    - name: Write the shared server body
+      ansible.builtin.template:
+        src: templates/site-body.conf.j2
+        dest: "/etc/nginx/snippets/{{ domain }}.conf"
+        mode: "0644"
+      vars:
+        analytics_auth: "{{ htpasswd.stat.exists }}"
+
+    - name: Write the nginx site
+      ansible.builtin.template:
+        src: templates/site.conf.j2
+        dest: "/etc/nginx/sites-available/{{ domain }}.conf"
+        mode: "0644"
+      vars:
+        tls: "{{ cert.stat.exists }}"
+
+    - name: Enable it
+      ansible.builtin.file:
+        src: "/etc/nginx/sites-available/{{ domain }}.conf"
+        dest: "/etc/nginx/sites-enabled/{{ domain }}.conf"
+        state: link
+
+    - name: Remove the nginx welcome page
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: Check the nginx config is valid
+      ansible.builtin.command: nginx -t
+      changed_when: false
+
+    - name: Start and reload nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
+        enabled: true
+
+    # -- HTTPS --------------------------------------------------------------
+
+    - name: Request the certificate from Let's Encrypt
+      ansible.builtin.command:
+        cmd: >-
+          certbot certonly --webroot -w {{ acme_root }}
+          -d {{ domain }} -d www.{{ domain }}
+          --non-interactive --agree-tos --no-eff-email -m {{ email }}
+      when: not cert.stat.exists
+      register: certbot_run
+      changed_when: "'Successfully received certificate' in certbot_run.stdout"
+
+    - name: Look for the certificate again
+      ansible.builtin.stat:
+        path: "/etc/letsencrypt/live/{{ domain }}/fullchain.pem"
+      register: cert_after
+
+    - name: Stop if the certificate still is not there
+      ansible.builtin.assert:
+        that: cert_after.stat.exists
+        fail_msg: >-
+          Let's Encrypt did not issue a certificate. The site is up on plain
+          HTTP. Read /var/log/letsencrypt/letsencrypt.log on the server for
+          the reason, fix it, and run this playbook again.
+
+    - name: Switch the site over to HTTPS
+      ansible.builtin.template:
+        src: templates/site.conf.j2
+        dest: "/etc/nginx/sites-available/{{ domain }}.conf"
+        mode: "0644"
+      vars:
+        tls: true
+      notify: reload nginx
+
+    - name: Check the nginx config again
+      ansible.builtin.command: nginx -t
+      changed_when: false
+
+    # -- Traffic reporting --------------------------------------------------
+    # No client-side tracking of any kind. GoAccess reads the nginx access
+    # logs and renders one HTML page. See deploy/analytics/README.md.
+
+    - name: Create the report directory
+      # OUTSIDE the site root deliberately: the deploy rsyncs the webroot with
+      # --delete, so a report written in there would be erased every time.
+      ansible.builtin.file:
+        path: /var/www/analytics
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: "0755"
+
+    - name: Install the report script
+      ansible.builtin.copy:
+        src: analytics/goaccess-report.sh
+        dest: /usr/local/bin/goaccess-report.sh
+        mode: "0755"
+
+    - name: Install the daily report timer
+      ansible.builtin.copy:
+        src: "analytics/{{ item }}"
+        dest: "/etc/systemd/system/{{ item }}"
+        mode: "0644"
+      loop:
+        - bijou-analytics.service
+        - bijou-analytics.timer
+      register: units
+
+    - name: Reload systemd if the units changed
+      ansible.builtin.systemd:
+        daemon_reload: true
+      when: units.changed
+
+    - name: Start the daily report timer
+      ansible.builtin.systemd:
+        name: bijou-analytics.timer
+        enabled: true
+        state: started
+
+    - name: Build the report once now, so there is something to look at
+      # NOT allowed to fail the deploy. The website going live must never
+      # depend on a traffic report rendering, and on a fresh server there is
+      # frequently nothing in the log to render yet.
+      ansible.builtin.command: /usr/local/bin/goaccess-report.sh
+      register: report
+      changed_when: true
+      failed_when: false
+
+    - name: Note if the report could not be built
+      ansible.builtin.debug:
+        msg: >-
+          The traffic report did not build. The site itself is fine and is
+          serving normally. Retry on the server with
+          `systemctl start bijou-analytics.service`. GoAccess said:
+          {{ (report.stderr | default('') ~ ' ' ~ report.stdout | default('')) | trim }}
+      when: report.rc | default(0) != 0
+
+    - name: Say how to reach the report
+      ansible.builtin.debug:
+        msg: >-
+          {{ "Report at https://" ~ domain ~ "/analytics/"
+             if htpasswd.stat.exists else
+             "No /etc/nginx/analytics.htpasswd yet, so /analytics/ is NOT being
+              served. Create it with: htpasswd -c /etc/nginx/analytics.htpasswd
+              matt   ...then deploy again." }}
+
+    - name: Reload nginx whenever the certificate is renewed
+      # This is NOT optional housekeeping. `certbot certonly` writes new
+      # certificate files but does not touch nginx, and nginx reads
+      # certificates once at startup and never re-reads them. Without this
+      # hook, certbot would renew correctly at around day 60, a perfectly
+      # valid certificate would sit on disk, and nginx would keep serving the
+      # old one until it expired at day 90 and the site went dark.
+      #
+      # Anything executable in renewal-hooks/deploy/ runs after a successful
+      # renewal, and only after a successful one.
+      ansible.builtin.copy:
+        dest: /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
+        mode: "0755"
+        content: |
+          #!/bin/sh
+          # Installed by deploy.yml. Runs after certbot renews a certificate.
+          nginx -t && systemctl reload nginx
+
+    - name: Make sure renewals are automatic
+      # certbot ships a systemd timer that renews twice a day. Nothing to
+      # write, but worth confirming it is actually switched on.
+      ansible.builtin.systemd:
+        name: certbot.timer
+        enabled: true
+        state: started
+
+    - name: Say where it is
+      ansible.builtin.debug:
+        msg: "Live at https://{{ domain }}/ — www and plain HTTP both redirect to it."
+
+  handlers:
+    - name: reload nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded

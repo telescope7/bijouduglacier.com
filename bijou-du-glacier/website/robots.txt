@@ -1,0 +1,13 @@
+# Bijou du Glacier — Saas-Fee
+User-agent: *
+Allow: /
+Disallow: /_backup/
+
+# The booking buttons point at these paths and nginx 302s them straight out to
+# SaasFeeHolidays, Airbnb and Booking.com. There is no page behind them. Left
+# crawlable they would be indexed as thin redirects competing with the real
+# booking page, so keep them out.
+Disallow: /go/
+Disallow: /book-direct
+
+Sitemap: https://bijouduglacier.com/sitemap.xml

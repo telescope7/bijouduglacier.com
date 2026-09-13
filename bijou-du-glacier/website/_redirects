@@ -1,0 +1,3 @@
+# Edge redirect for Cloudflare Pages / Netlify.
+# Sends the bare domain to the English homepage, which is the hreflang x-default.
+/    /en/    302

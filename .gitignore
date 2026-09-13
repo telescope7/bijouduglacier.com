@@ -1,0 +1,23 @@
+# ---- things that must never reach a public repository ----------------------
+# Your server's address and your email address. Copies with placeholders are
+# committed as .example files; see deploy/README.md.
+bijou-du-glacier/deploy/inventory.ini
+bijou-du-glacier/deploy/vars.yml
+
+# Never commit a password file. The real one lives only on the server, in
+# /etc/nginx/, and is created by hand with htpasswd.
+*.htpasswd
+
+# ---- noise -----------------------------------------------------------------
+.DS_Store
+__pycache__/
+*.pyc
+*.bak
+*.swp
+
+# Backups the tools write before a destructive edit.
+bijou-du-glacier/website/_backup/
+bijou-du-glacier/tools/*.bak
+
+# Scratch output from the report script, if ever run locally.
+.report-in-progress.html

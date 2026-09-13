@@ -1,0 +1,8 @@
+---
+# Copy this to vars.yml and fill it in. vars.yml is gitignored, so your
+# address never ends up in a public repository.
+#
+#     cp vars.yml.example vars.yml
+#
+# Where Let's Encrypt sends certificate-expiry warnings. Nothing else uses it.
+email: you@example.com

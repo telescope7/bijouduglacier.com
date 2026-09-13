@@ -1,0 +1,67 @@
+{{ ansible_managed | comment }}
+# Hand edits to this file are overwritten on the next deploy. Change
+# deploy/templates/ instead.
+#
+# On the first run there is no certificate yet, so this is HTTP only and just
+# serves the site. Once certbot has issued one, the playbook re-renders this
+# file with the HTTPS blocks below and reloads.
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name {{ domain }} www.{{ domain }};
+
+    # Renewals are fetched over plain HTTP, so this stays reachable even after
+    # everything else on port 80 is redirected away.
+    location ^~ /.well-known/acme-challenge/ {
+        root {{ acme_root }};
+        default_type "text/plain";
+    }
+{% if tls %}
+
+    location / {
+        return 301 https://{{ domain }}$request_uri;
+    }
+}
+
+# www exists so that people who type it get somewhere, but the canonical URLs
+# on every page are the bare domain, so it only ever redirects.
+server {
+    # `listen ... http2` rather than the newer `http2 on;` directive, which
+    # needs nginx 1.25.1. This older form works on every version Ubuntu ships.
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name www.{{ domain }};
+
+    ssl_certificate     /etc/letsencrypt/live/{{ domain }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ domain }}/privkey.pem;
+
+    return 301 https://{{ domain }}$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name {{ domain }};
+
+    ssl_certificate         /etc/letsencrypt/live/{{ domain }}/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/{{ domain }}/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ domain }}/chain.pem;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 1d;
+    ssl_stapling on;
+    ssl_stapling_verify on;
+
+    # Tells browsers to refuse plain HTTP for this domain for a year. Read the
+    # note in README.md before you point this domain anywhere else.
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    include snippets/{{ domain }}.conf;
+}
+{% else %}
+    include snippets/{{ domain }}.conf;
+}
+{% endif %}

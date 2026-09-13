@@ -1,0 +1,131 @@
+{{ ansible_managed | comment }}
+# The part of the server config that is the same whether we are on HTTP or
+# HTTPS. site.conf.j2 includes this from whichever server block is live, so
+# there is only one copy of the rules to keep straight.
+
+root {{ webroot }};
+index index.html;
+charset utf-8;
+
+# Page views go here; booking clicks are diverted to their own file further
+# down. `combined` is the stock nginx format and the one GoAccess reads with
+# --log-format=COMBINED. Ubuntu's logrotate already covers /var/log/nginx/*.log.
+access_log /var/log/nginx/bijou-access.log combined;
+
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-Frame-Options        "SAMEORIGIN" always;
+add_header Referrer-Policy        "strict-origin-when-cross-origin" always;
+
+gzip on;
+gzip_vary on;
+gzip_min_length 512;
+gzip_types text/plain text/css application/javascript application/json image/svg+xml application/xml application/xhtml+xml;
+
+# The bare domain has no content of its own. English is the hreflang x-default,
+# so that is where it goes. 302 rather than 301, because which language a
+# visitor should land on is not a permanent decision.
+location = /           { return 302 /en/; }
+location = /index.html { return 302 /en/; }
+
+# Canonical URLs are /en/apartment/, but the internal links spell out
+# index.html so the folder also opens by double-clicking it from disk. Send the
+# explicit form to the canonical one.
+#
+# This uses $request_uri, which is the ORIGINAL request and is not rewritten by
+# the internal redirect that `index index.html` performs. Matching on $uri here
+# instead would send /en/ to index.html to /en/ forever.
+if ($request_uri ~ "^(/.+)/index\.html(\?.*)?$") {
+    return 301 $1/;
+}
+
+# -----------------------------------------------------------------------
+# BOOKING CLICKS
+#
+# Every booking button on the site points at one of these three paths rather
+# than at the platform directly, so a click leaves a line in our own log. No
+# script, no cookie, no third party: the only thing recorded is the same
+# request line nginx would write for any page.
+#
+# 302, never 301. The platforms reissue listing URLs, and a 301 would sit in
+# a guest's browser cache long after the target moved.
+#
+# These must match DESTINATIONS in tools/build_site.py, which is where the
+# links are generated. audit.py fails the build if the two ever drift.
+#
+# Each gets its own access_log line, to a file of their own. That keeps the
+# clicks out of the page-view report and makes them trivially greppable.
+# `combined` is the stock nginx format, which is also what GoAccess parses
+# with --log-format=COMBINED. See deploy/analytics/README.md.
+# -----------------------------------------------------------------------
+
+location = /book-direct {
+    access_log /var/log/nginx/bijou-bookings.log combined;
+    return 302 https://saasfeeholidays.com/en/saasfeeholidays-du-glacier---b4;
+}
+
+location = /go/airbnb {
+    access_log /var/log/nginx/bijou-bookings.log combined;
+    return 302 https://www.airbnb.com/rooms/1674533087008414341;
+}
+
+location = /go/booking {
+    access_log /var/log/nginx/bijou-bookings.log combined;
+    return 302 https://www.booking.com/hotel/ch/saasfeeholidays-du-glacier-b4.html;
+}
+
+location / {
+    try_files $uri $uri/ =404;
+}
+
+# Image and video filenames are not content-hashed, so replacing a photo keeps
+# its old name. Thirty days is the compromise between caching well and not
+# showing a stale photo for a year. See README.md if you want to change it.
+location ~* \.(avif|jpg|jpeg|png|webp|svg|ico|mp4|webm|woff2)$ {
+    expires 30d;
+    access_log off;
+}
+
+location ~* \.css$   { expires 1h; }
+location ~* \.html$  { expires -1; }
+
+location = /robots.txt  { expires 1h; access_log off; }
+location = /sitemap.xml { expires 1h; }
+
+{% if analytics_auth %}
+# The GoAccess report, regenerated daily by a systemd timer. It lives OUTSIDE
+# the site root on purpose: the deploy rsyncs the webroot with --delete, and
+# anything in there that is not in the build gets removed.
+#
+# This block only appears once /etc/nginx/analytics.htpasswd exists. The
+# playbook does not create that file and never sees your password: you make it
+# yourself with htpasswd, as described in deploy/analytics/README.md. Until
+# then there is no /analytics/ location at all, which is a 404 rather than an
+# accidentally public traffic report.
+#
+# `^~`, not a plain prefix, and `root` rather than `alias`. Both matter:
+#
+#   ^~  tells nginx that if this prefix wins, it must NOT then go looking at
+#       regex locations. Without it, `index index.html` internally redirects
+#       /analytics/ to /analytics/index.html, that URI re-enters location
+#       matching, and `location ~* \.html$` further up steals it. That regex
+#       has no root of its own, so nginx falls back to the SITE root and
+#       looks for /var/www/bijouduglacier.com/analytics/index.html, which
+#       does not exist. The result is a 404 *after* a successful password
+#       prompt, which is a genuinely baffling thing to debug.
+#
+#   root /var/www  resolves /analytics/index.html to
+#       /var/www/analytics/index.html, the same answer `alias` gives, without
+#       any of alias's well-known edge cases around try_files and trailing
+#       slashes.
+#
+location ^~ /analytics/ {
+    root /var/www;
+    index index.html;
+
+    auth_basic "Bijou du Glacier analytics";
+    auth_basic_user_file /etc/nginx/analytics.htpasswd;
+
+    add_header X-Robots-Tag "noindex, nofollow" always;
+    access_log off;
+}
+{% endif %}
