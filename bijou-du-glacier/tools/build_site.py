@@ -503,17 +503,56 @@ def build_footer(L, lang):
 # Structured data
 # ---------------------------------------------------------------------------
 
+# Google's VacationRental amenityFeature vocabulary is a CONTROLLED list, and
+# the values must be these exact English tokens even on the fr/de/it pages.
+# Free text here is simply ignored. Every entry below is claimed in the site's
+# own copy (see L["amenities"]); nothing is assumed.
+#   wifi        <- "High-speed internet throughout"
+#   tv          <- "Television in the living room"
+#   washerDryer <- "Washing machine and tumble dryer"
+#   heating     <- "Oak floors, underfloor-warm and quiet"
+#   elevator    <- "Lift access to the apartment"
+#   childFriendly <- "Games for the children", and the FAQ answer
+# Deliberately absent: ac, pool, hotTub, fireplace, parkingType, airportShuttle,
+# wheelchairAccessible, selfCheckinCheckout — none of them are claimed anywhere,
+# and an amenity a guest arrives to find missing is worse than no markup.
+GOOGLE_AMENITIES = [
+    ("balcony", True), ("childFriendly", True), ("elevator", True),
+    ("heating", True), ("kitchen", True), ("microwave", True),
+    ("ovenStove", True), ("tv", True), ("washerDryer", True),
+    ("wifi", True),
+]
+
+# Stable, content-independent, and identical across all four languages, exactly
+# as Google requires: it must not change when the listing name or the room count
+# does. "b4" is the apartment's designation in Residence du Glacier.
+PROPERTY_ID = "bijouduglacier-b4"
+
+
 def lodging_node(L, lang):
     """VacationRental is a subtype of LodgingBusiness, so this satisfies both.
 
-    aggregateRating is deliberately absent: there is no real, verifiable rating
-    for this property in the source material, and inventing one is both a
-    Google structured-data violation and a lie. Add it here once the Airbnb /
-    Booking.com ratings are known, using the real figures.
+    Shaped to Google's VacationRental spec: the unit's physical details live in
+    containsPlace (an Accommodation), not on the VacationRental itself, and
+    occupancy.value is required there. See
+    https://developers.google.com/search/docs/appearance/structured-data/vacation-rental
+
+    aggregateRating and review are deliberately absent: the listing is new and
+    has no ratings yet. Inventing them is both a Google structured-data
+    violation and a lie. Add them here once real figures exist.
+
+    Note that the rich result itself is gated behind Google's vacation-rental
+    Early Adopters Program, which needs Hotel Center access. This markup is
+    correct and useful regardless — it is what general search and the AI answer
+    engines read — but do not expect a carousel from it.
     """
+    # Google requires at least 8 images, including at least one each of a
+    # bedroom, a bathroom and a common area. All three are covered below.
     images = ["%s/img/%s-%d.jpg" % (SITE["origin"], n, _variants[n][-1])
-              for n in ("piste-dawn", "living-room", "master-bedroom",
-                        "kitchen", "bathroom", "balcony-view")]
+              for n in ("piste-dawn", "living-room", "living-wide",
+                        "dining-table", "kitchen", "master-bedroom",
+                        "bedroom-2", "bedroom-3", "bathroom",
+                        "balcony-view", "village")]
     return {
         "@type": "VacationRental",
         "@id": url("home", lang, True) + "#lodging",
@@ -547,31 +586,57 @@ def lodging_node(L, lang):
             },
             "geo": {"@type": "GeoCoordinates", "latitude": 46.1085, "longitude": 7.9291},
         },
-        "numberOfRooms": 4,
+        # REQUIRED by Google, and the thing Search Console was complaining
+        # about. The unit's physical detail belongs here, on an Accommodation,
+        # not on the VacationRental above. occupancy.value is required and must
+        # be a plain integer — maxValue is not accepted in its place.
+        "containsPlace": {
+            "@type": "Accommodation",
+            "additionalType": "EntirePlace",
+            "occupancy": {"@type": "QuantitativeValue", "value": 8},
+            "numberOfBedrooms": 4,
+            "numberOfBathroomsTotal": 3,
+            "bed": [{"@type": "BedDetails", "numberOfBeds": 4, "typeOfBed": "King"}],
+            "floorSize": {
+                # 154.31 m2 is the Bruttogeschossflaeche printed on the
+                # architect's plan: gross area including walls and the 25.23 m2
+                # balcony. Quoted on the owner's instruction. The net internal
+                # area, being the sum of the rooms without the balcony, is
+                # 111.20 m2.
+                "@type": "QuantitativeValue",
+                "value": 154.31,
+                "unitCode": "MTK",
+            },
+            "petsAllowed": False,
+            "smokingAllowed": False,
+            "amenityFeature": [
+                {"@type": "LocationFeatureSpecification", "name": n, "value": v}
+                for n, v in GOOGLE_AMENITIES
+            ] + [
+                {"@type": "LocationFeatureSpecification",
+                 "name": "internetType", "value": "Free"},
+            ],
+        },
+        # numberOfRooms is deliberately omitted. It previously read 4, which
+        # merely duplicated the bedroom count; the honest figure depends on
+        # whether the living room counts, and the field is optional.
         "numberOfBedrooms": 4,
         "numberOfBathroomsTotal": 3,
         "occupancy": {"@type": "QuantitativeValue", "maxValue": 8, "unitText": "guests"},
         "petsAllowed": False,
         "smokingAllowed": False,
-        "amenityFeature": [
-            {"@type": "LocationFeatureSpecification", "name": n, "value": True}
-            for n in L["amenities"]
-        ],
+        # Apartment is one of Google's suggested additionalType values for a
+        # vacation rental. Chalet would be a stretch: this is a flat in a
+        # building, and saying otherwise sets the wrong expectation.
+        "additionalType": "Apartment",
+        "identifier": PROPERTY_ID,
         # sameAs and the ReserveAction below deliberately use the REAL
         # destinations, not our redirect paths. sameAs exists to tell a search
         # engine "this listing and that listing are the same property"; aiming
         # it at our own 302 would break exactly the association it is there to
         # make, and /go/ is disallowed in robots.txt besides.
         "sameAs": list(DESTINATIONS.values()),
-        "floorSize": {
-            # 154.31 m2 is the Bruttogeschossflaeche printed on the architect's
-            # plan: gross area including walls and the 25.23 m2 balcony. Quoted
-            # on the owner's instruction. The net internal area, being the sum
-            # of the rooms without the balcony, is 111.20 m2.
-            "@type": "QuantitativeValue",
-            "value": 154.31,
-            "unitCode": "MTK",
-        },
+        # floorSize now lives on containsPlace, which is where Google reads it.
         "checkinTime": "15:00",
         "isAccessibleForFree": False,
         "potentialAction": {

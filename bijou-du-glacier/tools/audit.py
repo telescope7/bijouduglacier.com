@@ -356,9 +356,51 @@ def main():
                     fail(rel(path), "homepage JSON-LD has no VacationRental")
             for n in data.get("@graph", []):
                 if n.get("@type") == "VacationRental":
-                    for k in ("address", "geo", "amenityFeature", "name", "url"):
+                    # Google's required set for VacationRental. containsPlace
+                    # and identifier are the two that Search Console reports as
+                    # critical when absent; the rest keep the node coherent.
+                    # https://developers.google.com/search/docs/appearance/structured-data/vacation-rental
+                    for k in ("address", "geo", "name", "url",
+                              "identifier", "containsPlace"):
                         if k not in n:
                             fail(rel(path), "VacationRental missing %s" % k)
+
+                    # Google wants at least 8 images, covering at minimum a
+                    # bedroom, a bathroom and a common area.
+                    imgs = n.get("image") or []
+                    if len(imgs) < 8:
+                        fail(rel(path), "VacationRental has %d images, Google "
+                                        "requires at least 8" % len(imgs))
+
+                    cp = n.get("containsPlace") or {}
+                    if cp:
+                        # occupancy.value is required, and must be a plain
+                        # integer. maxValue is NOT accepted in its place.
+                        val = (cp.get("occupancy") or {}).get("value")
+                        if not isinstance(val, int):
+                            fail(rel(path), "containsPlace.occupancy.value must be "
+                                            "an integer, got %r" % (val,))
+                        if not cp.get("amenityFeature"):
+                            fail(rel(path), "containsPlace missing amenityFeature")
+                        # The amenity vocabulary is a controlled English list and
+                        # stays English on the fr/de/it pages. A translated token
+                        # is silently ignored by Google, so catch it here.
+                        allowed = {
+                            "ac", "airportShuttle", "balcony", "beachAccess",
+                            "childFriendly", "crib", "elevator", "fireplace",
+                            "freeBreakfast", "gymFitnessEquipment", "heating",
+                            "hotTub", "instantBookable", "ironingBoard",
+                            "kitchen", "microwave", "outdoorGrill", "ovenStove",
+                            "patio", "petsAllowed", "pool", "privateBeachAccess",
+                            "selfCheckinCheckout", "smokingAllowed", "tv",
+                            "washerDryer", "wheelchairAccessible", "wifi",
+                            "internetType", "parkingType", "poolType", "licenseNum",
+                        }
+                        for a in cp.get("amenityFeature", []):
+                            if a.get("name") not in allowed:
+                                fail(rel(path), "amenityFeature %r is not in Google's "
+                                                "controlled vocabulary" % a.get("name"))
+
                     if "aggregateRating" in n:
                         warn(rel(path), "aggregateRating present — confirm it is a real, "
                                         "verifiable rating before shipping")
