@@ -42,10 +42,41 @@ if [[ "$served" != "$KEY" ]]; then
 fi
 echo "  ok"
 
-mapfile -t URLS < <(grep -o '<loc>[^<]*</loc>' "$SITEMAP" | sed 's|</\?loc>||g')
+# Read the URLs out of the sitemap.
+#
+# Deliberately NOT `mapfile -t`: that is a bash 4 builtin, and macOS still ships
+# bash 3.2 (Apple froze it in 2007 rather than move to GPLv3). This loop is the
+# portable equivalent and works on both.
+# Two separate substitutions rather than `s|</\?loc>||g`. BSD sed, which is what
+# macOS ships, has no `\?` operator — that is a GNU extension. There it silently
+# matches nothing, the tags survive, and IndexNow rejects the lot with a 400.
+URLS=()
+while IFS= read -r line; do
+  [ -n "$line" ] && URLS+=("$line")
+done < <(grep -o '<loc>[^<]*</loc>' "$SITEMAP" \
+         | sed -e 's|<loc>||' -e 's|</loc>||' \
+         | tr -d '\r')
 
 if [[ ${#URLS[@]} -eq 0 ]]; then
   echo "No <loc> entries found in the sitemap." >&2
+  exit 1
+fi
+
+# Check what we actually parsed before sending it. IndexNow's answer to a bad
+# URL is a flat 400 that tells you nothing about which one or why, so validate
+# here where the offending value can be printed.
+bad=0
+for u in "${URLS[@]}"; do
+  case "$u" in
+    "https://${HOST}/"*) ;;
+    *) echo "  not a valid ${HOST} URL: [${u}]" >&2; bad=$((bad+1)) ;;
+  esac
+done
+if [[ $bad -gt 0 ]]; then
+  echo >&2
+  echo "${bad} of ${#URLS[@]} parsed entries are not usable URLs, so nothing was" >&2
+  echo "submitted. The value is printed in brackets above — if it still has XML" >&2
+  echo "tags around it, the sitemap parsing broke rather than the sitemap." >&2
   exit 1
 fi
 
