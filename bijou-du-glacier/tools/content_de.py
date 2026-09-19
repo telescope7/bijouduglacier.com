@@ -45,8 +45,9 @@ DE = {
     },
 
     "amenities": [
-        "Vier Schlafzimmer mit je einem Kingsize-Bett",
-        "Betten und Matratzen von Hypnos",
+        "Vier Doppelzimmer: zwei Kingsize-Betten, zwei als Zimmer mit Zusammenschiebebetten",
+        "Die beiden Zusammenschiebebetten wahlweise als Kingsize oder zwei Einzelbetten",
+        "Betten und Matratzen von Hypnos in allen Zimmern",
         "Platz für acht Personen",
         "Drei Badezimmer: zwei tiefe Wannen und eine Walk-in-Dusche",
         "Offener Wohn- und Küchenbereich",
@@ -64,6 +65,9 @@ DE = {
         "Skidepot im Haus",
         "Einbauschränke und Stauraum für die Ausrüstung",
         "Bettwäsche, Handtücher und Haartrockner vorhanden",
+        "Shampoo, Spülung, Duschgel und Seife vorhanden",
+        "Verdunkelungsrollos in jedem Schlafzimmer",
+        "Kleiderbügel und Stauraum in jedem Zimmer",
         "Reichlich warme Wolldecken",
         "Spiele für die Kinder",
         "Reinigungsmittel vorhanden",
@@ -73,13 +77,14 @@ DE = {
         "Vier Gehminuten zu den Pisten",
         "Im autofreien Dorf gelegen",
         "Das ganze Haus neu saniert",
+        "Keine Klimaanlage: auf 1800 Metern hat sie noch niemand vermisst",
     ],
 
     "facts_table": {
         "caption": "Alles, was man bestätigt haben möchte, bevor man eine Woche darauf verwendet.",
         "rows": [
             ("Personen", "8 Gäste"),
-            ("Schlafzimmer", "4, je mit einem Kingsize-Bett"),
+            ("Schlafzimmer", "4 Doppelzimmer. Zwei mit Kingsize-Bett, zwei wahlweise als Kingsize oder Einzelbetten"),
             ("Badezimmer", "3: zwei mit tiefer Wanne, eines mit Walk-in-Dusche"),
             ("Adresse", "Residence du Glacier, Blomattenstrasse 2, 3906 Saas-Fee, Wallis, Schweiz"),
             ("Weg zu den Pisten", "Vier Gehminuten durch das Dorf"),
@@ -96,7 +101,7 @@ DE = {
 
     "faq": [
         ("Für wie viele Personen ist die Ferienwohnung?",
-         "Für acht, in vier Schlafzimmern. In jedem steht ein Kingsize-Bett auf einer Hypnos-Matratze. Keine Schlafsofas, keine Galerie, kein Zimmer, das sich als Kammer mit Fenster entpuppt."),
+         "Für acht, in vier Schlafzimmern, alle als Doppelzimmer. Zwei haben ein festes Kingsize-Bett. Die beiden anderen haben zwei Einzelbetten, die sich zu einem Kingsize zusammenschieben lassen, je nachdem, wie es der Gruppe passt. Einfach vor der Anreise Bescheid geben, dann sind die Betten entsprechend bezogen. Alle Matratzen sind von Hypnos. Keine Schlafsofas, keine Galerie, kein Zimmer, das sich als Kammer mit Fenster entpuppt."),
         ("Ist die Wohnung Ski-in/Ski-out?",
          "Nein, und das sagen wir lieber offen. Bijou du Glacier liegt mitten im Dorf, vier Gehminuten von den Pisten entfernt. Saas-Fee ist autofrei, man geht ohnehin überall zu Fuss hin. Wer aber unbedingt direkt vor der Tür einsteigen will, ist hier falsch."),
         ("Wohin mit den Skiern?",
@@ -117,10 +122,10 @@ DE = {
 
         "home": {
             "title": "Luxus-Ferienwohnung Saas-Fee, 8 Personen | Bijou du Glacier",
-            "desc": "Neu renovierte Ferienwohnung für acht im autofreien Saas-Fee, Wallis. Vier Kingsize-Betten, drei Badezimmer, vier Gehminuten zu den Pisten.",
+            "desc": "Neu renovierte Ferienwohnung für acht im autofreien Saas-Fee, Wallis. Kingsize oder Einzelbetten, drei Badezimmer, vier Gehminuten zu den Pisten.",
             "h1": "Ein Juwel unter dem Gletscher von Saas-Fee",
-            "lede": "Acht Gäste. Vier Kingsize-Betten. Ein Nussbaumtisch, an dem alle gleichzeitig sitzen, in einem Dorf, in dem das Lauteste draussen Schuhe auf frischem Schnee sind.",
-            "facts": ["8 Personen", "4 Kingsize-Betten", "3 Badezimmer", "4 Min. zu den Pisten"],
+            "lede": "Acht Gäste. Vier Doppelzimmer, wahlweise als Kingsize oder Einzelbetten bezogen. Ein Nussbaumtisch, an dem alle gleichzeitig sitzen, in einem Dorf, in dem das Lauteste draussen Schuhe auf frischem Schnee sind.",
+            "facts": ["8 Personen", "4 Doppelzimmer", "3 Badezimmer", "4 Min. zu den Pisten"],
             "jump": [
                 ("overview", "Die Wohnung"),
                 ("gallery", "Bilder"),
@@ -137,7 +142,7 @@ DE = {
     <div class="split">
       <div class="measure reveal">
         <p class="lede">In den meisten Wohnungen für acht Personen muss jemand das kleine Zimmer nehmen. Hier gibt es kein kleines Zimmer.</p>
-        <p>Bijou du Glacier belegt das Ostende des zweiten Obergeschosses der Residence du Glacier, eines von Grund auf sanierten Hauses mitten im Dorf. Vier Schlafzimmer, jedes mit eigenem Kingsize-Bett auf einer Hypnos-Matratze, eigenem Fenster und eigenem Morgenlicht. Drei Badezimmer in hellem Stein und dunklem Schiefer: zwei mit tiefer Wanne, das dritte mit Walk-in-Dusche.</p>
+        <p>Bijou du Glacier belegt das Ostende des zweiten Obergeschosses der Residence du Glacier, eines von Grund auf sanierten Hauses mitten im Dorf. Vier Doppelzimmer, alle auf Hypnos-Matratzen, jedes mit eigenem Fenster und eigenem Morgenlicht. Zwei haben ein Kingsize-Bett, die beiden anderen zwei Einzelbetten, die sich zu einem Kingsize zusammenschieben lassen. Drei Badezimmer in hellem Stein und dunklem Schiefer: zwei mit tiefer Wanne, das dritte mit Walk-in-Dusche.</p>
         <p>Und ein einziger langer, offener Raum. Küche, Wohnbereich und eine Nussbaumbohle mit Baumkante, an der alle acht gleichzeitig sitzen, damit die Gruppe zusammenbleibt, statt sich über Etagen zu verteilen.</p>
         <p>Und dann der Balkon. Er zieht sich über die ganze Front der Wohnung, gedeckt und mit Blick direkt in die Berge. Bequeme Sitzplätze, Nachmittagssonne, bis das Licht die Gipfel verlässt, und dreizehn Viertausender, die die Unterhaltung übernehmen.</p>
         <p><a href="{apartment}">Der Rundgang, Zimmer für Zimmer</a>.</p>
@@ -218,7 +223,7 @@ DE = {
 
         "apartment": {
             "title": "Ferienwohnung, 4 Schlafzimmer, 8 Personen | Bijou du Glacier",
-            "desc": "Zimmer für Zimmer: vier Schlafzimmer mit Hypnos-Kingsize-Betten, offene Küche und Wohnraum, Nussbaumtisch für acht, drei Badezimmer und ein grosser Balkon.",
+            "desc": "Zimmer für Zimmer: vier Doppelzimmer auf Hypnos-Betten, wahlweise Kingsize oder Einzelbetten, offene Küche, Nussbaumtisch für acht, drei Bäder und grosser Balkon.",
             "h1": "Die Wohnung, Zimmer für Zimmer",
             "lede": "Breite Eiche, heller Stein, gebürstetes Messing. Modern alpin statt geschnitzter Folklore, und so bemessen, dass acht Personen gut miteinander wohnen, statt bloss hineinzupassen.",
             "jump": [
@@ -236,10 +241,11 @@ DE = {
 <section class="section" id="sleeping" aria-labelledby="sleeping-h">
   <div class="wrap">
     <p class="eyebrow">Schlafen</p>
-    <h2 id="sleeping-h">Vier Schlafzimmer. Vier Kingsize-Betten. Schöne Bergsicht.</h2>
+    <h2 id="sleeping-h">Vier Doppelzimmer. Kingsize oder Einzelbetten, ganz wie es passt.</h2>
     <div class="split">
       <div class="measure">
-        <p>In jedem der vier Schlafzimmer steht ein Kingsize-Bett, und jedes hat ein eigenes Fenster und Tageslicht. Genau darum geht es beim Grundriss: Vier Paare oder zwei Familien teilen sich die Wohnung, ohne dass jemand das kürzere Ende zieht.</p>
+        <p>Alle vier Schlafzimmer sind Doppelzimmer, jedes mit eigenem Fenster und Tageslicht. Zwei haben ein festes Kingsize-Bett. In den beiden anderen stehen zwei Einzelbetten, die sich zu einem Kingsize zusammenschieben lassen.</p>
+        <p>Das ist praktischer als vier feste Kingsize-Betten. Vier Paare bekommen vier Kingsize-Betten. Zwei Familien bekommen zwei Kingsize-Betten und vier Einzelbetten für die Kinder. Bei der Buchung kurz Bescheid geben, dann sind die Betten vor der Ankunft entsprechend bezogen. So zieht niemand das kürzere Ende.</p>
         <p>Jedes Bett ist ein Hypnos, weshalb Gäste eher über den Schlaf schreiben als über das Skifahren. Das Hauptschlafzimmer ist raumhoch mit heller Eiche getäfert und hat ein gepolstertes Kopfteil. Die drei anderen sind heller gehalten, mit weissen Wänden, gerahmten Alpendrucken, Wolldecken in Oliv, Rost und Ocker sowie Leselampen auf beiden Seiten.</p>
         <p>In jedem Zimmer Einbauschränke mit Kleiderstange und Tablaren, dazu ein Skidepot im Untergeschoss des Hauses, damit die Ausrüstung von acht Personen nie im Korridor landet.</p>
       </div>
@@ -489,7 +495,8 @@ DE = {
     <div class="cols">
       <div class="col">
         <h3>Bei wem Sie buchen</h3>
-        <p>Eine privat gehaltene Wohnung, betreut von SaasFeeHolidays.com, einer Verwaltung an der Untere Dorfstrasse im Dorf. Keine Kette, kein Portfolio. Eine Wohnung, in einem Haus, mit einem Schlüsselbund.</p>
+        <p>Eine privat gehaltene Wohnung, betreut von Adam und dem Team von SaasFeeHolidays.com an der Untere Dorfstrasse im Dorf. Keine Kette, kein Portfolio. Eine Wohnung, in einem Haus, mit einem Schlüsselbund.</p>
+        <p>Sie machen das nicht erst seit gestern. Neun Jahre Gastgeber in Saas-Fee, Superhost-Status auf Airbnb und <strong>308 Gästebewertungen mit einem Schnitt von 4,76 von 5</strong> über die Wohnungen, die sie im Dorf betreuen. Sie leben das ganze Jahr hier, wissen, welches Restaurant im Februar den Weg wert ist, und sind die Leute, die Ihre Nachrichten beantworten und Ihnen die Schlüssel übergeben.</p>
       </div>
       <div class="col">
         <h3>Zahlung und Stornierung</h3>

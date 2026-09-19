@@ -16,7 +16,7 @@ the first line does all the work.**
 **Link in bio:** `https://bijouduglacier.com`
 
 ```
-Four bedrooms. Four king-size beds. One very long walnut table.
+Four double bedrooms. Kings or twins, your choice. One very long walnut table.
 
 Bijou du Glacier occupies the east end of the second floor of Residence du Glacier, in the heart of Saas-Fee. We wanted it to feel like a home someone actually lives in — wide oak boards underfoot, pale stone and brushed brass, textiles in olive and rust — rather than the carved-pine cliché that alpine rentals so often fall into.
 
@@ -157,7 +157,7 @@ Newly renovated throughout. Link in bio.
 ```
 Every apartment that sleeps eight claims four "double" bedrooms. Here's ours, drawn to scale, so you can check.
 
-Four bedrooms — Zimmer on the plan — each with a king-size bed on a Hypnos mattress, each with its own window. No box room. No mezzanine. No bedroom that turns out to be a cupboard with a skylight.
+Four double bedrooms — Zimmer on the plan — all on Hypnos mattresses, each with its own window. Two have fixed king-size beds; the other two are zip-and-link, made up as a king or as twins. Four couples, or two families with the children in singles. No box room. No mezzanine. No bedroom that turns out to be a cupboard with a skylight.
 
 Three bathrooms: two with deep baths, one walk-in shower. A central hall so nobody walks through anyone else's room. The kitchen, dining and living run along the front in one open space, and the balcony runs the full width of that, facing the mountains.
 
@@ -206,7 +206,7 @@ If you're the person in your group who always ends up organising the ski trip: t
 
 The good weeks in Saas-Fee — Christmas, New Year, the February half-terms — get taken early, and they get taken by people who booked them the year before. By the time everyone has replied to the group chat in November, the four-bedroom places are gone.
 
-So: four bedrooms, four king-size beds, three bathrooms, sleeps eight, four minutes from the slopes in a car-free village. If those are your dates, take them now and let the group catch up.
+So: four double bedrooms made up as kings or twins, three bathrooms, sleeps eight, four minutes from the slopes in a car-free village. If those are your dates, take them now and let the group catch up.
 
 Link in bio, or send us a message here if you'd rather just ask about specific weeks.
 

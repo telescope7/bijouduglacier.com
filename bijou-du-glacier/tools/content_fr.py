@@ -46,8 +46,9 @@ FR = {
     },
 
     "amenities": [
-        "Quatre chambres, quatre lits king size",
-        "Literie et matelas Hypnos",
+        "Quatre chambres doubles : deux lits king size, deux en lits jumelables",
+        "Les deux chambres jumelables faites en king size ou en lits simples, au choix",
+        "Literie et matelas Hypnos dans toutes les chambres",
         "Huit personnes",
         "Trois salles de bains : deux baignoires profondes et une douche à l'italienne",
         "Séjour et cuisine ouverts l'un sur l'autre",
@@ -65,6 +66,9 @@ FR = {
         "Casier à skis dans l'immeuble",
         "Armoires encastrées et rangement pour le matériel",
         "Linge de lit, serviettes et sèche-cheveux fournis",
+        "Shampooing, après-shampooing, gel douche et savon fournis",
+        "Stores occultants dans chaque chambre",
+        "Cintres et rangement dans chaque chambre",
         "Quantité de plaids bien chauds",
         "Jeux pour les enfants",
         "Produits d'entretien à disposition",
@@ -74,13 +78,14 @@ FR = {
         "Quatre minutes à pied des pistes",
         "Au cœur du village sans voitures",
         "Immeuble entièrement rénové",
+        "Pas de climatisation : à 1800 mètres, personne ne l'a jamais regrettée",
     ],
 
     "facts_table": {
         "caption": "Tout ce que l'on souhaite voir confirmé avant d'y consacrer une semaine.",
         "rows": [
             ("Capacité", "8 personnes"),
-            ("Chambres", "4, chacune avec un lit king size"),
+            ("Chambres", "4 doubles. Deux en lit king size, deux jumelables en king size ou lits simples"),
             ("Salles de bains", "3 : deux avec baignoire profonde, une avec douche à l'italienne"),
             ("Adresse", "Residence du Glacier, Blomattenstrasse 2, 3906 Saas-Fee, Valais, Suisse"),
             ("Distance des pistes", "Quatre minutes à pied, à travers le village"),
@@ -97,7 +102,7 @@ FR = {
 
     "faq": [
         ("Combien de personnes l'appartement peut-il accueillir ?",
-         "Huit, dans quatre chambres. Chacune a un lit king size sur un matelas Hypnos. Pas de canapé-lit, pas de mezzanine, pas de pièce qui se révèle être un réduit avec une fenêtre."),
+         "Huit, dans quatre chambres, toutes doubles. Deux ont un lit king size fixe. Les deux autres sont en lits jumelables : deux lits simples qui s'assemblent en king size, selon ce qui convient au groupe. Dites-nous avant l'arrivée et les lits seront faits en conséquence. Tous les matelas sont des Hypnos. Pas de canapé-lit, pas de mezzanine, pas de pièce qui se révèle être un réduit avec une fenêtre."),
         ("L'appartement est-il ski aux pieds (ski-in / ski-out) ?",
          "Non, et nous préférons le dire clairement. Bijou du Glacier se trouve au cœur même du village, à quatre minutes à pied des pistes. Saas-Fee étant sans voitures, tout le monde se déplace de toute façon à pied. Mais si vous voulez chausser devant la porte, ce n'est pas cet appartement-là."),
         ("Où met-on les skis ?",
@@ -118,10 +123,10 @@ FR = {
 
         "home": {
             "title": "Appartement de luxe 4 chambres, Saas-Fee | Bijou du Glacier",
-            "desc": "Appartement de quatre chambres pour huit au cœur de Saas-Fee sans voitures. Quatre lits king size, trois salles de bains, quatre minutes des pistes.",
+            "desc": "Appartement de quatre chambres pour huit au cœur de Saas-Fee sans voitures. King size ou lits simples, trois salles de bains, quatre minutes des pistes.",
             "h1": "Un bijou sous le glacier, au cœur de Saas-Fee",
-            "lede": "Huit personnes. Quatre lits king size. Une table en noyer assez longue pour tous, dans un village où le bruit le plus fort, dehors, ce sont les chaussures sur la neige fraîche.",
-            "facts": ["8 personnes", "4 lits king size", "3 salles de bains", "4 min des pistes"],
+            "lede": "Huit personnes. Quatre chambres doubles, faites en king size ou en lits simples selon le groupe. Une table en noyer assez longue pour tous, dans un village où le bruit le plus fort, dehors, ce sont les chaussures sur la neige fraîche.",
+            "facts": ["8 personnes", "4 chambres doubles", "3 salles de bains", "4 min des pistes"],
             "jump": [
                 ("overview", "L'appartement"),
                 ("gallery", "Photographies"),
@@ -219,7 +224,7 @@ FR = {
 
         "apartment": {
             "title": "Appartement 4 chambres, huit personnes | Bijou du Glacier",
-            "desc": "Pièce par pièce : quatre chambres avec lits king size Hypnos, cuisine et séjour ouverts, table en noyer pour huit, trois salles de bains et un grand balcon.",
+            "desc": "Pièce par pièce : quatre chambres doubles sur literie Hypnos, en king size ou lits simples, cuisine ouverte, table en noyer pour huit, trois salles de bains, grand balcon.",
             "h1": "L'appartement, pièce par pièce",
             "lede": "Chêne large, pierre claire, laiton brossé. Alpin contemporain plutôt que pastiche de bois sculpté, et dimensionné pour que huit personnes vivent bien ensemble, et non simplement y tiennent.",
             "jump": [
@@ -237,10 +242,11 @@ FR = {
 <section class="section" id="sleeping" aria-labelledby="sleeping-h">
   <div class="wrap">
     <p class="eyebrow">Chambres</p>
-    <h2 id="sleeping-h">Quatre chambres. Quatre lits king size. Une vue splendide.</h2>
+    <h2 id="sleeping-h">Quatre chambres doubles. King size ou lits simples, à votre choix.</h2>
     <div class="split">
       <div class="measure">
-        <p>Chacune des quatre chambres reçoit un lit king size, et chacune a sa propre fenêtre et sa lumière du jour. C'est tout l'intérêt de ce plan : quatre couples, ou deux familles, se partagent l'appartement sans que personne ne tire la courte paille.</p>
+        <p>Les quatre chambres sont doubles, et chacune a sa propre fenêtre et sa lumière du jour. Deux ont un lit king size fixe. Les deux autres sont en lits jumelables : deux lits simples qui s'assemblent en king size.</p>
+        <p>C'est plus utile que quatre king size fixes. Quatre couples ont quatre king size. Deux familles ont deux king size et quatre lits simples pour les enfants. Indiquez la configuration souhaitée à la réservation et les lits seront faits avant votre arrivée. Personne ne tire la courte paille.</p>
         <p>Chaque lit est un Hypnos, ce qui explique pourquoi les hôtes écrivent sur leurs nuits plutôt que sur leurs journées de ski. La chambre principale est lambrissée du sol au plafond en chêne clair, avec une tête de lit capitonnée. Les trois autres sont plus claires : murs blancs, gravures alpines encadrées, plaids de laine olive, rouille et ocre, et une lampe de lecture de chaque côté.</p>
         <p>Des armoires encastrées dans chaque chambre, penderie et étagères, et un casier à skis au sous-sol de l'immeuble, pour que le matériel de huit personnes ne finisse jamais dans le couloir.</p>
       </div>
@@ -490,7 +496,8 @@ FR = {
     <div class="cols">
       <div class="col">
         <h3>Auprès de qui vous réservez</h3>
-        <p>Un appartement privé, entretenu par SaasFeeHolidays.com, une régie établie au village, à l'Untere Dorfstrasse. Pas une chaîne, pas un portefeuille de biens. Un appartement, dans un immeuble, avec un seul trousseau de clés.</p>
+        <p>Un appartement privé, entretenu par Adam et l'équipe de SaasFeeHolidays.com, établie au village, à l'Untere Dorfstrasse. Pas une chaîne, pas un portefeuille de biens. Un appartement, dans un immeuble, avec un seul trousseau de clés.</p>
+        <p>Ce n'est pas leur premier hiver. Neuf ans à recevoir des hôtes à Saas-Fee, le statut Superhost sur Airbnb et <strong>308 avis, avec une moyenne de 4,76 sur 5</strong>, sur les appartements dont ils s'occupent au village. Ils vivent ici toute l'année, savent quel restaurant vaut le déplacement en février, et ce sont eux qui répondront à vos messages et vous remettront les clés.</p>
       </div>
       <div class="col">
         <h3>Paiement et annulation</h3>

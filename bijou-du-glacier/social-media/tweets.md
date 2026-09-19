@@ -59,7 +59,7 @@ https://bijouduglacier.com/en/saas-fee/
 ```
 The problem with renting a place for eight: someone always ends up on the sofa.
 
-Four bedrooms here. Four king beds. Three bathrooms. A table long enough that nobody eats standing up.
+Four double bedrooms here, made up as kings or twins. Three bathrooms. A table long enough that nobody eats standing up.
 
 https://bijouduglacier.com/en/apartment/
 
@@ -159,7 +159,7 @@ https://bijouduglacier.com/en/saas-fee/
 **Image:** `images/instagram/ig-sq-bathroom.jpg`
 
 ```
-Four king beds on Hypnos mattresses. Three bathrooms — two with deep baths, one walk-in shower. A kitchen you'd actually cook in.
+Four doubles on Hypnos mattresses, kings or twins as you like. Three bathrooms, two with deep baths. A kitchen you'd actually cook in.
 
 It's a holiday apartment that isn't furnished like one.
 
@@ -174,7 +174,7 @@ https://bijouduglacier.com/en/apartment/
 ```
 Every place that sleeps eight claims four double bedrooms. Here's ours to scale, so you can check.
 
-No box room. No mezzanine. Four windows, four king beds, three bathrooms.
+No box room. No mezzanine. Four windows, four doubles, three bathrooms.
 
 https://bijouduglacier.com/en/apartment/
 

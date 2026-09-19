@@ -642,7 +642,16 @@ def lodging_node(L, lang):
             "occupancy": {"@type": "QuantitativeValue", "value": 8},
             "numberOfBedrooms": 4,
             "numberOfBathroomsTotal": 3,
-            "bed": [{"@type": "BedDetails", "numberOfBeds": 4, "typeOfBed": "King"}],
+            # Six beds, matching the Airbnb listing exactly: two bedrooms have
+            # a fixed king, two are zip-and-link (two singles that join into a
+            # king). Declared as the singles they physically are, because that
+            # is the configuration a guest could arrive to find, and schema is
+            # not the place to describe the flexible version. The prose does
+            # that, and sells it as the feature it is.
+            "bed": [
+                {"@type": "BedDetails", "numberOfBeds": 2, "typeOfBed": "King"},
+                {"@type": "BedDetails", "numberOfBeds": 4, "typeOfBed": "Single"},
+            ],
             "floorSize": {
                 # 154.31 m2 is the Bruttogeschossflaeche printed on the
                 # architect's plan: gross area including walls and the 25.23 m2

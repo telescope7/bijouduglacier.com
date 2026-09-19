@@ -45,8 +45,9 @@ IT = {
     },
 
     "amenities": [
-        "Quattro camere, quattro letti king size",
-        "Letti e materassi Hypnos",
+        "Quattro camere doppie: due con letto king size, due con letti componibili",
+        "Le due camere componibili a scelta come king size o due letti singoli",
+        "Letti e materassi Hypnos in tutte le camere",
         "Otto posti letto",
         "Tre bagni: due vasche profonde e una doccia walk-in",
         "Soggiorno e cucina a vista",
@@ -64,6 +65,9 @@ IT = {
         "Deposito sci nell'edificio",
         "Armadi a muro e spazio per l'attrezzatura",
         "Biancheria, asciugamani e asciugacapelli forniti",
+        "Shampoo, balsamo, bagnoschiuma e sapone inclusi",
+        "Tende oscuranti in ogni camera",
+        "Grucce e spazio armadio in ogni camera",
         "Coperte calde in abbondanza",
         "Giochi per i bambini",
         "Prodotti per la pulizia a disposizione",
@@ -73,13 +77,14 @@ IT = {
         "Quattro minuti a piedi dalle piste",
         "Nel villaggio senza auto",
         "Edificio interamente ristrutturato",
+        "Niente aria condizionata: a 1800 metri non è mai mancata",
     ],
 
     "facts_table": {
         "caption": "Tutto ciò che si vuole confermato prima di dedicarci una settimana.",
         "rows": [
             ("Posti letto", "8 ospiti"),
-            ("Camere", "4, ciascuna con letto king size"),
+            ("Camere", "4 doppie. Due con letto king size, due componibili come king size o letti singoli"),
             ("Bagni", "3: due con vasca profonda, uno con doccia walk-in"),
             ("Indirizzo", "Residence du Glacier, Blomattenstrasse 2, 3906 Saas-Fee, Vallese, Svizzera"),
             ("Distanza dalle piste", "Quattro minuti a piedi, attraverso il villaggio"),
@@ -96,7 +101,7 @@ IT = {
 
     "faq": [
         ("Quante persone ospita l'appartamento?",
-         "Otto, in quattro camere. Ognuna ha un letto king size su un materasso Hypnos. Niente divani letto, niente soppalchi, nessuna stanza che si rivela uno sgabuzzino con finestra."),
+         "Otto, in quattro camere, tutte doppie. Due hanno un letto king size fisso. Le altre due hanno due letti singoli che si uniscono in un king size, a seconda di come serve al gruppo. Basta dirlo prima dell'arrivo e i letti saranno preparati di conseguenza. Tutti i materassi sono Hypnos. Niente divani letto, niente soppalchi, nessuna stanza che si rivela uno sgabuzzino con finestra."),
         ("L'appartamento è ski-in / ski-out?",
          "No, e preferiamo dirlo chiaramente. Bijou du Glacier si trova nel cuore stesso del villaggio, a quattro minuti a piedi dalle piste. Saas-Fee è senza auto, quindi ci si sposta comunque a piedi. Ma se cercate di allacciare gli scarponi davanti alla porta, questo non è l'appartamento giusto."),
         ("Dove si mettono gli sci?",
@@ -117,10 +122,10 @@ IT = {
 
         "home": {
             "title": "Appartamento di lusso 4 camere, Saas-Fee | Bijou du Glacier",
-            "desc": "Appartamento di quattro camere per otto nel cuore di Saas-Fee senza auto. Quattro letti king size, tre bagni, quattro minuti dalle piste.",
+            "desc": "Appartamento di quattro camere per otto nel cuore di Saas-Fee senza auto. King size o letti singoli, tre bagni, quattro minuti dalle piste.",
             "h1": "Un gioiello sotto il ghiacciaio di Saas-Fee",
-            "lede": "Otto ospiti. Quattro letti king size. Un tavolo in noce abbastanza lungo per tutti, in un villaggio dove il rumore più forte, fuori, sono gli scarponi sulla neve fresca.",
-            "facts": ["8 persone", "4 letti king size", "3 bagni", "4 min dalle piste"],
+            "lede": "Otto ospiti. Quattro camere doppie, preparate come king size o con letti singoli secondo il gruppo. Un tavolo in noce abbastanza lungo per tutti, in un villaggio dove il rumore più forte, fuori, sono gli scarponi sulla neve fresca.",
+            "facts": ["8 persone", "4 camere doppie", "3 bagni", "4 min dalle piste"],
             "jump": [
                 ("overview", "L'appartamento"),
                 ("gallery", "Fotografie"),
@@ -218,7 +223,7 @@ IT = {
 
         "apartment": {
             "title": "Appartamento 4 camere, otto persone | Bijou du Glacier",
-            "desc": "Stanza per stanza: quattro camere con letti king size Hypnos, cucina e soggiorno a vista, tavolo in noce per otto, tre bagni e un grande balcone panoramico.",
+            "desc": "Stanza per stanza: quattro camere doppie su letti Hypnos, king size o letti singoli, cucina a vista, tavolo in noce per otto, tre bagni e un grande balcone.",
             "h1": "L'appartamento, stanza per stanza",
             "lede": "Rovere a doghe larghe, pietra chiara, ottone spazzolato. Alpino contemporaneo, non finto legno intagliato, e dimensionato perché otto persone vivano bene insieme, non semplicemente ci stiano.",
             "jump": [
@@ -236,10 +241,11 @@ IT = {
 <section class="section" id="sleeping" aria-labelledby="sleeping-h">
   <div class="wrap">
     <p class="eyebrow">Camere</p>
-    <h2 id="sleeping-h">Quattro camere. Quattro letti king size. Vista magnifica.</h2>
+    <h2 id="sleeping-h">Quattro camere doppie. King size o letti singoli, come preferite.</h2>
     <div class="split">
       <div class="measure">
-        <p>Ognuna delle quattro camere ospita un letto king size e ognuna ha la propria finestra e la propria luce naturale. È tutto il senso di questa pianta: quattro coppie, o due famiglie, condividono l'appartamento senza che a qualcuno tocchi la parte peggiore.</p>
+        <p>Tutte e quattro le camere sono doppie e ognuna ha la propria finestra e la propria luce naturale. Due hanno un letto king size fisso. Le altre due hanno due letti singoli che si uniscono in un king size.</p>
+        <p>È più utile di quattro king size fissi. Quattro coppie hanno quattro king size. Due famiglie hanno due king size e quattro letti singoli per i bambini. Basta indicarlo al momento della prenotazione e i letti saranno pronti prima dell'arrivo. Così a nessuno tocca la parte peggiore.</p>
         <p>Ogni letto è un Hypnos, ed è il motivo per cui gli ospiti finiscono per scrivere di quanto hanno dormito bene più che dello sci. La camera principale è rivestita da pavimento a soffitto in rovere chiaro, con testiera imbottita. Le altre tre sono più chiare: pareti bianche, stampe alpine incorniciate, plaid di lana oliva, ruggine e ocra, e lampade da lettura su entrambi i lati.</p>
         <p>Armadi a muro in ogni stanza, con appenderia e ripiani, e un locale sci nel seminterrato dell'edificio, così l'attrezzatura di otto persone non finisce mai in corridoio.</p>
       </div>
@@ -489,7 +495,8 @@ IT = {
     <div class="cols">
       <div class="col">
         <h3>Con chi prenotate</h3>
-        <p>Un appartamento di proprietà privata, seguito da SaasFeeHolidays.com, un'amministrazione con sede in paese, in Untere Dorfstrasse. Non una catena, non un portafoglio immobiliare. Un appartamento, in un edificio, con un mazzo di chiavi.</p>
+        <p>Un appartamento di proprietà privata, seguito da Adam e dal team di SaasFeeHolidays.com, con sede in paese, in Untere Dorfstrasse. Non una catena, non un portafoglio immobiliare. Un appartamento, in un edificio, con un mazzo di chiavi.</p>
+        <p>Non sono al primo inverno. Nove anni da host a Saas-Fee, status di Superhost su Airbnb e <strong>308 recensioni con una media di 4,76 su 5</strong> sugli appartamenti che seguono in paese. Vivono qui tutto l'anno, sanno quale ristorante vale la camminata a febbraio, e sono loro a rispondere ai vostri messaggi e a consegnarvi le chiavi.</p>
       </div>
       <div class="col">
         <h3>Pagamento e cancellazione</h3>

@@ -36,7 +36,7 @@ Two things worth a native eye before you post, if you have one available:
 **Link:** `https://bijouduglacier.com/de/`
 
 ```
-Vier Schlafzimmer. Vier Kingsize-Betten. Ein sehr langer Nussbaumtisch.
+Vier Doppelzimmer. Kingsize oder Einzelbetten, ganz wie es passt. Ein sehr langer Nussbaumtisch.
 
 Bijou du Glacier liegt im zweiten Stock der Residence du Glacier, mitten im Dorf. Breite Eichendielen, heller Naturstein, gebürstetes Messing, Textilien in Oliv und Rostrot — moderner Alpenstil, aber ohne die geschnitzte Arvenholz-Romantik, in die Bergwohnungen so gern verfallen.
 
@@ -104,7 +104,7 @@ Link in Bio.
 ```
 Jede Wohnung für acht Personen wirbt mit vier Doppelzimmern. Hier ist unser Grundriss, massstabsgetreu, zum Nachprüfen.
 
-Vier Schlafzimmer, jedes mit Kingsize-Bett auf einer Hypnos-Matratze, jedes mit eigenem Fenster. Keine Abstellkammer mit Dachfenster. Keine Galerie. Kein Zimmer, das sich vor Ort als Enttäuschung herausstellt.
+Vier Doppelzimmer auf Hypnos-Matratzen, jedes mit eigenem Fenster. Zwei mit festem Kingsize-Bett, zwei mit Einzelbetten, die sich zu einem Kingsize zusammenschieben lassen: vier Paare oder zwei Familien, wie es gerade passt. Keine Abstellkammer mit Dachfenster. Keine Galerie. Kein Zimmer, das sich vor Ort als Enttäuschung herausstellt.
 
 Drei Badezimmer: zwei mit Badewanne, eines mit begehbarer Dusche. Eine zentrale Diele, damit niemand durch fremde Zimmer laufen muss. Küche, Essbereich und Wohnraum liegen offen entlang der Front, und der Balkon zieht sich über die gesamte Breite.
 
@@ -195,7 +195,7 @@ Für alle, die in ihrer Gruppe immer die Skireise organisieren.
 
 Die guten Wochen in Saas-Fee — Weihnachten, Neujahr, die Februarferien — sind früh weg. Und zwar an Leute, die sie ein Jahr im Voraus gebucht haben. Wenn im November endlich alle im Gruppenchat geantwortet haben, sind die Wohnungen mit vier Schlafzimmern vergeben.
 
-Also: vier Schlafzimmer, vier Kingsize-Betten, drei Bäder, acht Gäste, vier Gehminuten zur Piste, autofreies Dorf. Wenn das die Daten sind — jetzt nehmen, die Gruppe zieht nach.
+Also: vier Doppelzimmer, wahlweise Kingsize oder Einzelbetten, drei Bäder, acht Gäste, vier Gehminuten zur Piste, autofreies Dorf. Wenn das die Daten sind — jetzt nehmen, die Gruppe zieht nach.
 
 Link in Bio. Oder einfach hier schreiben, wenn es um bestimmte Wochen geht.
 
@@ -232,7 +232,7 @@ bijouduglacier.com/de/saas-fee/
 ```
 Das Problem an Ferienwohnungen für acht: Einer schläft immer auf dem Sofa.
 
-Bijou du Glacier hat vier echte Schlafzimmer, vier Kingsize-Betten und einen Tisch, an dem alle acht sitzen.
+Bijou du Glacier hat vier echte Doppelzimmer, wahlweise als Kingsize oder Einzelbetten bezogen, und einen Tisch, an dem alle acht sitzen.
 
 bijouduglacier.com/de/ferienwohnung/
 

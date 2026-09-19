@@ -33,7 +33,7 @@ Bijou du Glacier | Saas-Fee Apartment
 
 ```
 Four-bedroom apartment for 8 in car-free Saas-Fee.
-4 king beds · 3 baths · 4 min to the slopes.
+4 double bedrooms · 3 baths · 4 min to the slopes.
 Book direct ↓
 ```
 
@@ -66,7 +66,7 @@ Bijou du Glacier — Saas-Fee
 **Short description** (255 characters):
 
 ```
-A newly renovated four-bedroom apartment for eight in car-free Saas-Fee, Valais. Four king-size bedrooms, three bathrooms, a walnut table that seats everyone, and a covered balcony facing thirteen four-thousand-metre peaks. Four minutes from the slopes.
+A newly renovated four-bedroom apartment for eight in car-free Saas-Fee, Valais. Four doubles made up as kings or twins, three bathrooms, a walnut table that seats everyone, and a covered balcony facing thirteen four-thousand-metre peaks.
 ```
 
 **Website:**
@@ -80,7 +80,7 @@ https://bijouduglacier.com
 ```
 Bijou du Glacier occupies the east end of the second floor of Residence du Glacier, in the heart of Saas-Fee.
 
-Four bedrooms, each with its own king-size bed, its own window and its own morning light. Three bathrooms in pale stone and dark slate — two with deep baths, the third with a walk-in shower. One long open room holding the kitchen, the sitting area and a live-edge walnut table that seats all eight at once.
+Four double bedrooms, each with its own window and its own morning light. Two have king-size beds; the other two are zip-and-link, made up as a king or as twins, whichever suits the party. Three bathrooms in pale stone and dark slate — two with deep baths, the third with a walk-in shower. One long open room holding the kitchen, the sitting area and a live-edge walnut table that seats all eight at once.
 
 The balcony runs the full width of the apartment, covered, facing the Mischabel massif.
 
@@ -136,7 +136,7 @@ Bijou du Glacier
 **Bio** (160 characters — this is 159):
 
 ```
-Four-bedroom apartment for eight in car-free Saas-Fee, Valais. 4 king beds, 3 baths, 4 minutes to the slopes. Book direct — same nightly rate, no platform fee.
+Four-bedroom apartment for eight in car-free Saas-Fee, Valais. Kings or twins, 3 baths, 4 min to the slopes. Book direct: same rate, no platform fee.
 ```
 
 **Location:** `Saas-Fee, Valais, Switzerland`

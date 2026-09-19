@@ -71,7 +71,7 @@ Four bedrooms. Eight guests. No cars.
 ```
 The whole apartment in twenty-six seconds.
 
-Four bedrooms, each with a king-size bed and its own window. Three bathrooms. One long open room with a walnut table that seats all eight. A covered balcony facing thirteen four-thousand-metre peaks.
+Four double bedrooms, made up as kings or twins, each with its own window. Three bathrooms. One long open room with a walnut table that seats all eight. A covered balcony facing thirteen four-thousand-metre peaks.
 
 And a village outside with no cars in it.
 
@@ -93,14 +93,14 @@ Saas-Fee, Valais. Link in bio.
 **On-screen text:**
 ```
 "Sleeps 8" usually means someone's on the sofa.
-→ Four real bedrooms. Four king beds.
+→ Four real doubles. Kings or twins, your call.
 ```
 
 **Caption:**
 ```
 Every apartment that sleeps eight claims four double bedrooms. Most of them are lying about at least one.
 
-Four bedrooms here. Four king-size beds on Hypnos mattresses. Four windows. No box room, no mezzanine, no sofa bed.
+Four double bedrooms here, all on Hypnos mattresses. Two fixed kings; two zip-and-link, made up as a king or as twins. Four windows. No box room, no mezzanine, no sofa bed.
 
 If you've ever been the one who booked the place and had to tell someone they're in the small room — you know exactly why this is the thing we lead with.
 
@@ -173,7 +173,7 @@ Vier Schlafzimmer. Acht Gäste. Keine Autos.
 ```
 Die ganze Wohnung in sechsundzwanzig Sekunden.
 
-Vier Schlafzimmer, jedes mit Kingsize-Bett und eigenem Fenster. Drei Bäder. Ein langer offener Raum mit einem Nussbaumtisch für alle acht. Ein überdachter Balkon mit Blick auf dreizehn Viertausender.
+Vier Doppelzimmer, wahlweise Kingsize oder Einzelbetten, jedes mit eigenem Fenster. Drei Bäder. Ein langer offener Raum mit einem Nussbaumtisch für alle acht. Ein überdachter Balkon mit Blick auf dreizehn Viertausender.
 
 Und davor ein Dorf ohne Autos.
 

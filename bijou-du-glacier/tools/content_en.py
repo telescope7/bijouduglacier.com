@@ -42,8 +42,9 @@ EN = {
     },
 
     "amenities": [
-        "Four bedrooms, four king-size beds",
-        "Hypnos beds and mattresses",
+        "Four double bedrooms: two king beds, two zip-and-link",
+        "Zip-and-link rooms made up as a king or twins, your choice",
+        "Hypnos beds and mattresses throughout",
         "Sleeps eight",
         "Three bathrooms: two deep baths and a walk-in shower",
         "Open-plan living room and kitchen",
@@ -61,6 +62,9 @@ EN = {
         "Ski locker in the building",
         "Fitted wardrobes and storage for kit",
         "Bed linen, towels and hairdryer provided",
+        "Shampoo, conditioner, shower gel and soap provided",
+        "Room-darkening blinds in every bedroom",
+        "Hangers and clothing storage in every room",
         "Plenty of warm blankets",
         "Games for the children",
         "Cleaning supplies provided",
@@ -70,13 +74,14 @@ EN = {
         "Four minutes' walk from the slopes",
         "Car-free village location",
         "The whole building newly renovated",
+        "No air conditioning: at 1,800 m it has never been missed",
     ],
 
     "facts_table": {
         "caption": "Everything you would want confirmed before you commit a week to it.",
         "rows": [
             ("Sleeps", "8 guests"),
-            ("Bedrooms", "4, each with a king-size bed"),
+            ("Bedrooms", "4 doubles. Two king beds; two zip-and-link, made up as a king or twins"),
             ("Bathrooms", "3: two with deep baths, one with a walk-in shower"),
             ("Address", "Residence du Glacier, Blomattenstrasse 2, 3906 Saas-Fee, Valais, Switzerland"),
             ("Distance to the slopes", "A four-minute walk through the village"),
@@ -93,7 +98,7 @@ EN = {
 
     "faq": [
         ("How many people does the apartment sleep?",
-         "Eight, in four bedrooms. Every one has a king-size bed on a Hypnos mattress. No sofa beds, no mezzanines, and no room that turns out to be a cupboard with a window."),
+         "Eight, in four bedrooms, all of them doubles. Two have fixed king-size beds. The other two are zip-and-link: two singles that join into a king, so they can be made up whichever way suits your group. Say which you want before you arrive and they will be ready. Every bed is a Hypnos. No sofa beds, no mezzanines, and no room that turns out to be a cupboard with a window."),
         ("Is the apartment ski-in, ski-out?",
          "No, and we would rather say so plainly. Bijou du Glacier stands in the very heart of the village, a four-minute walk from the slopes. Saas-Fee is car-free, so everyone walks everywhere in any case. But if a ski-in, ski-out door is what you are after, this is not that apartment."),
         ("Where do the skis go?",
@@ -115,10 +120,10 @@ EN = {
         # ==================================================================
         "home": {
             "title": "Luxury 4-Bedroom Apartment, Saas-Fee | Bijou du Glacier",
-            "desc": "A newly renovated four-bedroom apartment for eight in car-free Saas-Fee, Valais. Four king beds, three bathrooms, four minutes from the slopes. Book direct.",
+            "desc": "A newly renovated four-bedroom apartment for eight in car-free Saas-Fee, Valais. Kings or twins, three bathrooms, four minutes from the slopes. Book direct.",
             "h1": "A jewel beneath the glacier in car-free Saas-Fee",
-            "lede": "Eight guests. Four king-size beds. A walnut table long enough for every one of them, in a village where the loudest thing outside is boots on new snow.",
-            "facts": ["Sleeps 8", "4 king bedrooms", "3 bathrooms", "4 min to the slopes"],
+            "lede": "Eight guests. Four double bedrooms, made up as kings or twins to suit the party. A walnut table long enough for every one of them, in a village where the loudest thing outside is boots on new snow.",
+            "facts": ["Sleeps 8", "4 double bedrooms", "3 bathrooms", "4 min to the slopes"],
             "jump": [
                 ("overview", "The apartment"),
                 ("gallery", "Photographs"),
@@ -135,7 +140,7 @@ EN = {
     <div class="split">
       <div class="measure reveal">
         <p class="lede">Most apartments that sleep eight ask somebody to take the small room. This one has no small room.</p>
-        <p>Bijou du Glacier occupies the east end of the second floor of Residence du Glacier, a building renovated from the ground up, in the very heart of the village. Four bedrooms, each with its own king-size bed on a Hypnos mattress, its own window and its own morning light. Three bathrooms in pale stone and dark slate: two with deep baths, the third with a walk-in shower.</p>
+        <p>Bijou du Glacier occupies the east end of the second floor of Residence du Glacier, a building renovated from the ground up, in the very heart of the village. Four double bedrooms, each on Hypnos mattresses, each with its own window and its own morning light. Two have king-size beds; the other two are zip-and-link, made up as a king or as twins, whichever your group needs. Three bathrooms in pale stone and dark slate: two with deep baths, the third with a walk-in shower.</p>
         <p>And one long open room. Kitchen, sitting room and a live-edge walnut table that seats all eight at once, so the party stays together instead of scattering across floors.</p>
         <p>Then there is the balcony. It runs the whole front of the apartment, covered, and faces straight into the mountains. Comfortable seating, afternoon sun until the light leaves the summits, and thirteen four-thousand-metre peaks doing the entertaining.</p>
         <p><a href="{apartment}">Take the tour, room by room</a>.</p>
@@ -217,7 +222,7 @@ EN = {
         # ==================================================================
         "apartment": {
             "title": "Four-Bedroom Apartment, Sleeps Eight | Bijou du Glacier",
-            "desc": "Room by room: four bedrooms with Hypnos king beds, an open kitchen and living room, a walnut table for eight, three bathrooms and a large balcony.",
+            "desc": "Room by room: four double bedrooms on Hypnos beds, made up as kings or twins, an open kitchen and living room, a walnut table for eight, three bathrooms and a large balcony.",
             "h1": "The apartment, room by room",
             "lede": "Wide oak, pale stone, brushed brass. Modern alpine rather than carved-pine pastiche, and scaled so that eight people live well together rather than merely fit.",
             "jump": [
@@ -235,10 +240,11 @@ EN = {
 <section class="section" id="sleeping" aria-labelledby="sleeping-h">
   <div class="wrap">
     <p class="eyebrow">Sleeping</p>
-    <h2 id="sleeping-h">Four bedrooms. Four king-size beds. Beautiful mountain views.</h2>
+    <h2 id="sleeping-h">Four double bedrooms. Kings or twins, your choice.</h2>
     <div class="split">
       <div class="measure">
-        <p>Each of the four bedrooms takes a king-size bed, and each has its own window and daylight. That is the whole point of the layout: four couples, or two families, can share the apartment without anyone drawing the short straw.</p>
+        <p>All four bedrooms are doubles, and each has its own window and daylight. Two have fixed king-size beds. The other two are zip-and-link: two single beds that join into a king, so the room can be made up either way.</p>
+        <p>That is more useful than four fixed kings would be. Four couples get four kings. Two families get two kings and four singles for the children. Tell the local team which arrangement you want when you book, and the beds will be made up that way before you arrive. Nobody draws the short straw either way.</p>
         <p>Every bed is a Hypnos, which is why guests tend to write about how well they slept rather than about the skiing. The master bedroom is panelled floor to ceiling in pale oak with an upholstered headboard. The other three are lighter, with white walls, framed alpine prints, wool throws in olive, rust and ochre, and reading lamps on both sides.</p>
         <p>Fitted wardrobes in each room, with hanging space and shelves, and a ski locker in the basement of the building, so eight people's kit never ends up living in the hallway.</p>
       </div>
@@ -490,7 +496,8 @@ EN = {
     <div class="cols">
       <div class="col">
         <h3>Who you are booking with</h3>
-        <p>A privately owned apartment, looked after by SaasFeeHolidays.com, a management company based in the village on Untere Dorfstrasse. Not a chain, not a portfolio. One apartment, in one building, with one set of keys.</p>
+        <p>A privately owned apartment, looked after by Adam and the team at SaasFeeHolidays.com, based in the village on Untere Dorfstrasse. Not a chain, not a portfolio. One apartment, in one building, with one set of keys.</p>
+        <p>They are not new at this. Nine years hosting in Saas-Fee, Superhost status on Airbnb, and <strong>308 guest reviews averaging 4.76 out of 5</strong> across the apartments they look after in the village. They live here all year, they know which restaurant is worth the walk in February, and they are the people who will answer your messages and hand you the keys.</p>
       </div>
       <div class="col">
         <h3>Payment and cancellation</h3>

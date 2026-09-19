@@ -79,7 +79,7 @@ Modern alpine bedroom: oak panelling, olive linen, brushed brass
 
 **Description:**
 ```
-Chalet style without the carved-pine cliché. A full-height pale oak panelled wall behind an upholstered headboard, an olive quilted throw, rust cushions and warm brass lighting. The palette stays in the textiles so it can change with the season. From a four-bedroom apartment in Saas-Fee, Valais — every bedroom has a king-size bed and its own window.
+Chalet style without the carved-pine cliché. A full-height pale oak panelled wall behind an upholstered headboard, an olive quilted throw, rust cushions and warm brass lighting. The palette stays in the textiles so it can change with the season. From a four-bedroom apartment in Saas-Fee, Valais — four doubles, made up as kings or twins, each with its own window.
 ```
 
 ---
