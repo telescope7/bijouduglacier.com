@@ -11,9 +11,9 @@
 <link rel="alternate" hreflang="de" href="https://bijouduglacier.com/de/">
 <link rel="alternate" hreflang="it" href="https://bijouduglacier.com/it/">
 <link rel="alternate" hreflang="x-default" href="https://bijouduglacier.com/en/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<link rel="preload" href="../fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
 <link rel="preload" as="image" type="image/avif" href="../img/hero-poster-720.avif" imagesrcset="../img/hero-poster-480.avif 480w, ../img/hero-poster-720.avif 720w" imagesizes="(min-width: 640px) min(400px, 33vw), 96vw" fetchpriority="high">
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
@@ -314,9 +314,9 @@
 <a class="skip-link" href="#main">Aller au contenu principal</a>
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html"><img class="brand-mark" src="../img/blason-56.png" srcset="../img/blason-56.png 1x, ../img/blason-112.png 2x, ../img/blason-168.png 3x" width="49" height="56" alt="" decoding="async"><span class="brand-text">Bijou du Glacier<span>Saas-Fee · Valais · Suisse</span></span></a>
-    <nav class="site-nav" aria-label="Navigation principale"><a href="index.html" aria-current="page">Aperçu</a><a href="appartement/index.html">L&#x27;appartement</a><a href="saas-fee/index.html">Saas-Fee</a><a href="reserver/index.html">Réserver</a></nav>
-    <ul class="langs" aria-label="Choisir une langue"><li><a href="../en/index.html" hreflang="en" lang="en">EN</a></li><li><a href="index.html" hreflang="fr" lang="fr" aria-current="true">FR</a></li><li><a href="../de/index.html" hreflang="de" lang="de">DE</a></li><li><a href="../it/index.html" hreflang="it" lang="it">IT</a></li></ul>
+    <a class="brand" href="./"><img class="brand-mark" src="../img/blason-56.png" srcset="../img/blason-56.png 1x, ../img/blason-112.png 2x, ../img/blason-168.png 3x" width="49" height="56" alt="" decoding="async"><span class="brand-text">Bijou du Glacier<span>Saas-Fee · Valais · Suisse</span></span></a>
+    <nav class="site-nav" aria-label="Navigation principale"><a href="./" aria-current="page">Aperçu</a><a href="appartement/">L&#x27;appartement</a><a href="saas-fee/">Saas-Fee</a><a href="reserver/">Réserver</a></nav>
+    <ul class="langs" aria-label="Choisir une langue"><li><a href="../en/" hreflang="en" lang="en">EN</a></li><li><a href="./" hreflang="fr" lang="fr" aria-current="true">FR</a></li><li><a href="../de/" hreflang="de" lang="de">DE</a></li><li><a href="../it/" hreflang="it" lang="it">IT</a></li></ul>
     <a class="header-cta" href="https://bijouduglacier.com/book-direct" rel="noopener">Réserver en direct</a>
   </div>
 </header>
@@ -363,7 +363,7 @@
         <p>Bijou du Glacier occupe l'extrémité est du deuxième étage de la Residence du Glacier, un immeuble rénové de fond en comble, au cœur même du village. Quatre chambres, chacune avec son lit king size sur un matelas Hypnos, sa fenêtre et sa lumière du matin. Trois salles de bains en pierre claire et ardoise sombre : deux avec baignoire profonde, la troisième avec douche à l'italienne.</p>
         <p>Et une seule longue pièce ouverte. Cuisine, séjour et une planche de noyer à bord naturel où les huit s'assoient ensemble, pour que le groupe reste réuni au lieu de se disperser d'un étage à l'autre.</p>
         <p>Et puis il y a le balcon. Il court sur toute la façade de l'appartement, couvert, et regarde droit vers la montagne. Des assises confortables, le soleil de l'après-midi jusqu'à ce que la lumière quitte les sommets, et treize sommets de plus de quatre mille mètres qui se chargent du spectacle.</p>
-        <p><a href="appartement/index.html">La visite, pièce par pièce</a>.</p>
+        <p><a href="appartement/">La visite, pièce par pièce</a>.</p>
       </div>
       <figure><picture><source type="image/avif" srcset="../img/living-wide-480.avif 480w, ../img/living-wide-720.avif 720w" sizes="(min-width: 900px) 46vw, 92vw"><img src="../img/living-wide-720.jpg" srcset="../img/living-wide-480.jpg 480w, ../img/living-wide-720.jpg 720w" sizes="(min-width: 900px) 46vw, 92vw" width="720" height="480" alt="Séjour et coin repas de l&#x27;appartement de quatre chambres à Saas-Fee vus ensemble, hautes fenêtres ouvertes sur le village enneigé et les montagnes." loading="lazy" decoding="async"></picture><figcaption>Séjour et cuisine, ouverts l&#x27;un sur l&#x27;autre.</figcaption></figure>
     </div>
@@ -415,7 +415,7 @@
         <p class="lede">Pas de voitures. Pas de moteurs. Et un glacier juste au-dessus, que l'on skie en juillet aussi naturellement qu'en janvier.</p>
         <p>Saas-Fee se tient à 1800 mètres dans un fer à cheval de treize sommets de plus de quatre mille mètres, et le village est fermé à la circulation depuis des décennies. Les visiteurs laissent leur voiture à l'entrée et continuent à pied. Il reste un village qui sonne comme un village de montagne devrait sonner.</p>
         <p>Au-dessus, le Metro Alpin monte à l'intérieur de la montagne jusqu'au glacier de l'Allalin, à 3500 mètres, où la neige tient toute l'année. C'est pourquoi des équipes nationales s'y entraînent en août, et pourquoi votre saison n'est jamais tout à fait finie.</p>
-        <p><a href="saas-fee/index.html">Le ski, l'été et l'accès</a>.</p>
+        <p><a href="saas-fee/">Le ski, l'été et l'accès</a>.</p>
       </div>
     </div>
   </div>
@@ -469,7 +469,7 @@
       </div>
       <div>
         <h2>Explorer</h2>
-        <ul><li><a href="index.html">Aperçu</a></li><li><a href="appartement/index.html">L&#x27;appartement</a></li><li><a href="saas-fee/index.html">Saas-Fee</a></li><li><a href="reserver/index.html">Réserver</a></li></ul>
+        <ul><li><a href="./">Aperçu</a></li><li><a href="appartement/">L&#x27;appartement</a></li><li><a href="saas-fee/">Saas-Fee</a></li><li><a href="reserver/">Réserver</a></li></ul>
       </div>
       <div>
         <h2>Réserver</h2>
@@ -478,22 +478,5 @@
     </div>
   </div>
 </footer>
-<script>
-/* Progressive enhancement only. The .js class is added by this script, and the
-   stylesheet only hides .reveal elements once that class exists. If this never
-   runs, the page renders complete and static. No dependency, no CDN. */
-(function () {
-  var d = document.documentElement;
-  if (!("IntersectionObserver" in window)) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  d.className += " js";
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
-    });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.04 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-})();
-</script>
 </body>
 </html>

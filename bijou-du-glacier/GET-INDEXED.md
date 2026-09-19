@@ -262,6 +262,355 @@ links to the site. Check in that order.
 
 ---
 
+---
+---
+
+# Part 2 — Live site review, 19 September 2026
+
+Re-audited against the deployed site, six days after the first pass.
+
+## What's working
+
+| Check | Result |
+|---|---|
+| HTTPS, HSTS (`max-age=31536000; includeSubDomains`) | ✅ |
+| `www` → apex, and `http` → `https` | ✅ 301 |
+| `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy` | ✅ all set |
+| gzip on HTML/CSS | ✅ |
+| 404 returns a real 404 | ✅ |
+| Booking links route through first-party `/book-direct`, `/go/airbnb`, `/go/booking` | ✅ |
+| VacationRental markup: `identifier`, `containsPlace`, `occupancy.value: 8`, 11 images | ✅ live |
+| Homepage HTML | 36 KB, one `<h1>`, 20 images, 14 lazy-loaded |
+| hreflang + canonical, all four languages | ✅ |
+
+The structured-data fix is confirmed live. Google last crawled on 13 September and you
+deployed on 18 September, so Search Console will keep showing the old errors until it
+re-crawls. Use **URL Inspection → Test Live URL** to see the truth now.
+
+## What still needs dealing with
+
+### 1. You are still not indexed — and your GitHub repo is
+
+A `site:bijouduglacier.com` search returns **nothing from your domain**. The only thing
+ranking for your brand is `github.com/telescope7/bijouduglacier.com` — the public repo.
+
+Two consequences. Your repo currently outranks your website for your own name. And the repo
+is public, so your marketing plan, rate strategy notes and this file are readable by anyone
+who finds it. No credentials are exposed — `.gitignore` correctly excludes `inventory.ini`
+and `vars.yml` — so this is a judgement call, not an emergency. Making it private costs
+nothing and removes both problems.
+
+### 2. Internal links still point at non-canonical URLs — FIXED 19 Sep 2026
+
+Every page carried **15 internal links ending in `/index.html`** while the canonical tag said
+the directory form. Zero clean directory links. Google was being asked to spend crawl budget
+on URLs the site itself declared non-canonical, on a new domain where that budget is scarce,
+and nginx had to 301 every internal click.
+
+**Now fixed in `tools/build_site.py`.** `href()` emits the canonical directory form
+(`../apartment/`, `./` for self). Verified over HTTP: 21 pages crawled, 0 broken links, and
+the only remaining `index.html` links are the four on `website/index.html` — the root
+language picker, which is `noindex`, which nginx 302s past, and which keeps explicit
+filenames so the build still opens from disk.
+
+`audit.py` now enforces this: it resolves directory links the way a web server does, and
+**fails the build if any page other than the root picker links to an `index.html` URL**, so
+this cannot silently come back.
+
+One consequence, documented in `INSTRUCTIONS.md`: local preview now needs
+`python3 -m http.server 8080` rather than double-clicking, because `file://` shows a
+directory listing instead of the page.
+
+### 3. Google Fonts is still the only third-party request
+
+`fonts.googleapis.com` and `fonts.gstatic.com` on every page load. Render-blocking on the
+critical path, and every visitor's IP goes to Google — a live question under GDPR and the
+revised Swiss FADP. Work item 5 in `PROMPT-next-build.md`, still open. Self-hosting two
+families is an afternoon and makes the page faster.
+
+### 4. There is now JavaScript on the site
+
+A small inline script adds a `.js` class so the stylesheet can run the scroll-reveal
+animation. It's well-built progressive enhancement — no cookies, no third party, no
+tracking, and the page renders complete without it.
+
+Flagging it because the "no JavaScript at all" rule is no longer literally true. That's not
+a problem in itself, but it changes the Google Ads conversation below: adding a conversion
+tag would no longer be breaking a clean principle, only a question of degree.
+
+### 5. Minor
+
+- `<img class="motion-still">` has no `width`/`height` — the one image on the page without
+  dimensions, and a small CLS risk.
+- No `Content-Security-Policy` or `Permissions-Policy` header. Cheap hardening; neither
+  affects search.
+
+---
+
+# Part 3 — Getting more traffic, in priority order
+
+Ranked by return per hour, given that you run this as a passive owner with operations
+outsourced.
+
+### 1. The Saas-Fee tourism office listing — still the single best link available
+
+`saas-fee.ch` is the official resort site: topically perfect, authoritative, and a `.ch`
+domain. One email asking what's required to list a privately owned apartment. Nothing else
+on this list comes close for effort-to-value, and it directly addresses the real bottleneck,
+which is that **almost nothing on the internet links to you**.
+
+### 2. Ask `luxurychaletco.com` to link to you
+
+They already list your apartment at `/properties/du-glacier-b4` and they already rank for it.
+A link from that listing to your site costs them nothing. Worst case they say no.
+
+### 3. Post the social content that's already written
+
+Nine English captions, eight German, eight Pinterest pins, six video cuts — all finished, in
+`social-media/`, none of it posted. Social profiles are also the fastest way for a new domain
+to acquire its first few links.
+
+Start with German. Saas-Fee is in German-speaking Wallis and your `/de/` pages have no
+traffic source pointed at them at all.
+
+### 4. Content pages for research-phase searches
+
+Your four pages per language will rank for your brand and for narrow long-tail queries. They
+will never rank for the questions that bring people into the funnel a year early:
+
+- Saas-Fee or Zermatt — which to choose
+- Saas-Fee with young children
+- Getting to Saas-Fee from Geneva or Zurich
+- Is Saas-Fee good for non-skiers
+- Where to eat in Saas-Fee
+
+These are exactly your buyers, deciding on the *resort* before the *apartment*, and nobody
+in the village competes for them properly. This is a writing project, not a build task —
+which is why it sits below the three items above.
+
+### 5. Brand-defence Google Ads
+
+See Part 4. Cheap insurance, not a growth channel.
+
+### 6. Get the full-resolution photo originals
+
+Free, one email. Everything you have is a 1200 px web export; the photographer's originals
+will be 4000 px+. Upgrades the website, the social assets and any future ad creative at once.
+
+---
+
+# Part 4 — Google Ads for Book Direct
+
+## Read this first: you cannot currently measure a conversion
+
+The booking completes on `saasfeeholidays.com`, which you don't control, so you cannot place
+a tag on the confirmation page. **There is no way for you to report a real booking back to
+Google Ads.** Everything below is shaped around that fact.
+
+Three consequences, all non-negotiable:
+
+1. **You cannot use Smart Bidding.** Maximize Conversions, Target CPA and Target ROAS all
+   need conversion data. Use **Manual CPC** (or Maximize Clicks with a bid cap) and nothing
+   else. If someone tells you to "let Google optimise it", they're assuming data you don't
+   have.
+2. **Your best available signal is a click on Book Direct**, which you already log
+   server-side. Treat that as the proxy conversion.
+3. **Don't let Google's onboarding talk you into a Performance Max campaign.** PMax is
+   almost entirely automated and needs conversion data to function. Without it you're handing
+   over budget with no steering. Search campaigns only.
+
+## The URL to use
+
+**Final URL — English:**
+```
+https://bijouduglacier.com/en/book/
+```
+**German:**
+```
+https://bijouduglacier.com/de/buchen/
+```
+French: `https://bijouduglacier.com/fr/reserver/` · Italian: `https://bijouduglacier.com/it/prenotare/`
+
+**Do not use `https://bijouduglacier.com/book-direct` as a Final URL.** It's a 302 redirect
+to a third-party domain and it's `Disallow`ed in robots.txt. Google Ads requires the final
+URL to resolve to a crawlable page on your display domain; that one would be disapproved for
+a destination mismatch. Send people to your booking page and let them click through from
+there — which also means the click still lands in your log.
+
+Use one ad group per language with the matching Final URL. Don't rely on the root redirect
+to sort out language; it always lands on English.
+
+**Display path:** `bijouduglacier.com/book` (or `/buchen`).
+
+## Measuring it without a tag
+
+Put this in **Settings → Account settings → Final URL suffix**:
+
+```
+utm_source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_term={keyword}&utm_content={creative}
+```
+
+Those parameters land in the nginx request line, so your existing log-based reporting can
+count them. No JavaScript, no cookie, no consent banner, nothing new on the page.
+
+```bash
+# ad clicks that landed on the site this month
+ssh $SERVER "grep -c 'utm_source=google' /var/log/nginx/bijou-access.log"
+
+# how many of them went on to click Book Direct
+ssh $SERVER "wc -l /var/log/nginx/bijou-*click*.log"
+
+# which keyword sent them
+ssh $SERVER "grep -o 'utm_term=[^& ]*' /var/log/nginx/bijou-access.log | sort | uniq -c | sort -rn"
+```
+
+That gives you cost per Book Direct click, which is the number to manage against.
+
+## Campaign A — Brand defence. Run this one.
+
+**Purpose:** when someone hears about the apartment and searches its name, you appear first
+— not `luxurychaletco.com`, not Booking.com, not the developer's property-sales site.
+
+- **Type:** Search. Manual CPC.
+- **Budget:** CHF 3–5/day.
+- **Bids:** CHF 0.30–0.80. Brand terms are cheap because nobody else wants them.
+- **Match:** exact and phrase.
+- **Locations:** Switzerland, Germany, Austria, UK, France, Netherlands, Belgium, Italy.
+- **Keywords:**
+  ```
+  [bijou du glacier]
+  [bijouduglacier]
+  "bijou du glacier saas fee"
+  "bijou du glacier apartment"
+  [du glacier b4]
+  "residence du glacier saas fee apartment"
+  ```
+
+**Negative keywords — important.** "Residence du Glacier" is also a property *for sale*
+development, and those searches are worthless to you:
+```
+-kaufen -verkauf -immobilien -eigentum -zu verkaufen -for sale -buy -purchase
+-property for sale -investment -makler -estate agent -preisliste
+-jobs -stellen -career -wikipedia
+```
+
+## Campaign B — High-intent long-tail. Test only, hard limits.
+
+German first — that's the market.
+
+- **Budget:** CHF 10/day, hard cap. **Kill criterion: six weeks.** If it hasn't produced
+  Book Direct clicks at a cost you'd accept, switch it off and put the money into the
+  photographer.
+- **Match:** exact only. Not broad. Broad match without conversion data burns budget on
+  irrelevant traffic faster than anything else in Ads.
+- **Keywords (DE):**
+  ```
+  [ferienwohnung saas fee 8 personen]
+  [ferienwohnung saas fee 4 schlafzimmer]
+  [saas fee wohnung für gruppen]
+  [gruppenunterkunft saas fee]
+  ```
+- **Keywords (EN):**
+  ```
+  [saas fee apartment 8 people]
+  [saas fee 4 bedroom apartment]
+  [large apartment saas fee]
+  [saas fee group accommodation]
+  ```
+
+## Campaign C — Do not run
+
+Generic terms: `saas fee apartment`, `ski chalet switzerland`, `valais holiday rental`.
+
+You'd be bidding against Booking.com, Airbnb and Interhome — who have unlimited budgets,
+instant booking, live availability, prices and thousands of reviews — while sending traffic
+to a site that shows **no price, no availability and no reviews**. The clicks cost CHF
+1.50–4.00 in this market and they will not convert. Revisit once you have reviews on the
+site.
+
+## Ad copy — responsive search ads
+
+Paste these in. Headlines are ≤30 characters, descriptions ≤90, as Google requires.
+
+**English headlines:**
+```
+Bijou du Glacier, Saas-Fee
+4-Bedroom Apartment, Saas-Fee
+Sleeps 8 · 4 King Bedrooms
+Book Direct, No Platform Fee
+Car-Free Saas-Fee Apartment
+4 Minutes From The Slopes
+Three Bathrooms, Four Beds
+Official Site, Book Direct
+Same Rate, No Service Fee
+Luxury Apartment, Valais
+Newly Renovated, Sleeps 8
+No Small Room. Four Kings.
+Glacier Views From Balcony
+Group Ski Trips, Saas-Fee
+See The Floor Plan
+```
+
+**English descriptions:**
+```
+Four real bedrooms, four king beds, three bathrooms. Nobody takes the small room.
+Book direct: same nightly rate as the platforms, without their service fee on top.
+Four minutes' walk to the slopes, in a village with no cars. Sleeps eight.
+Newly renovated apartment in the heart of Saas-Fee. See the floor plan and photos.
+```
+
+**German headlines:**
+```
+Bijou du Glacier, Saas-Fee
+Ferienwohnung für 8 Personen
+4 Schlafzimmer, 3 Bäder
+Direkt buchen, ohne Gebühr
+Autofreies Saas-Fee
+4 Gehminuten zur Piste
+Offizielle Website
+Kein kleines Zimmer
+Neu renoviert, Wallis
+Gruppenreise Saas-Fee
+Platz für acht Gäste
+Blick auf 13 Viertausender
+Zum Grundriss
+```
+
+**German descriptions:**
+```
+Vier echte Schlafzimmer, vier Kingsize-Betten, drei Bäder. Niemand schläft auf dem Sofa.
+Direkt buchen: gleicher Übernachtungspreis, ohne die Servicegebühr der Portale.
+Vier Gehminuten zur Piste, mitten im autofreien Dorf. Platz für acht Gäste.
+Neu renovierte Ferienwohnung im Herzen von Saas-Fee. Grundriss und Fotos ansehen.
+```
+
+**Sitelinks** (all four languages have equivalents):
+
+| Text | URL |
+|---|---|
+| The apartment | `/en/apartment/` |
+| Floor plan | `/en/apartment/` |
+| Saas-Fee | `/en/saas-fee/` |
+| Book direct | `/en/book/` |
+
+**Callouts:** `Sleeps 8` · `4 King Bedrooms` · `3 Bathrooms` · `4 Min To Slopes` ·
+`Car-Free Village` · `Newly Renovated` · `No Platform Fee`
+
+## What to do before spending anything
+
+1. **Fix the internal `/index.html` links** (Part 2 item 2). Landing page experience is a
+   Quality Score input, and redirect chains on the landing page don't help.
+2. **Set the Final URL suffix** and confirm a test click shows up in your log. If you can't
+   see the click, don't buy clicks.
+3. **Start brand-only, at CHF 3/day, for two weeks.** Learn the interface on cheap traffic
+   before risking money on anything competitive.
+
+Expect roughly CHF 90–150/month for brand defence alone. That is the whole recommendation
+until there are reviews on the site — at which point Campaign B becomes worth a real test.
+
+
+---
+
 *Sources consulted: [IndexNow FAQ](https://www.indexnow.org/faq) ·
 [AI crawler user-agent reference 2026](https://www.anagram.ai/blog/ai-crawler-user-agent-list-2026-14-bots-and-robotstxt-tokens-to-know) ·
 [AI crawlers explained](https://www.anagram.ai/blog/ai-crawlers-explained-gptbot-claudebot-perplexitybot-and-how-to-let-them-in-2026)*

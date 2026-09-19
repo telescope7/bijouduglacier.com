@@ -11,9 +11,9 @@
 <link rel="alternate" hreflang="de" href="https://bijouduglacier.com/de/">
 <link rel="alternate" hreflang="it" href="https://bijouduglacier.com/it/">
 <link rel="alternate" hreflang="x-default" href="https://bijouduglacier.com/en/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<link rel="preload" href="../fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
 <link rel="preload" as="image" type="image/avif" href="../img/hero-poster-720.avif" imagesrcset="../img/hero-poster-480.avif 480w, ../img/hero-poster-720.avif 720w" imagesizes="(min-width: 640px) min(400px, 33vw), 96vw" fetchpriority="high">
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
@@ -314,9 +314,9 @@
 <a class="skip-link" href="#main">Vai al contenuto principale</a>
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html"><img class="brand-mark" src="../img/blason-56.png" srcset="../img/blason-56.png 1x, ../img/blason-112.png 2x, ../img/blason-168.png 3x" width="49" height="56" alt="" decoding="async"><span class="brand-text">Bijou du Glacier<span>Saas-Fee · Vallese · Svizzera</span></span></a>
-    <nav class="site-nav" aria-label="Navigazione principale"><a href="index.html" aria-current="page">Panoramica</a><a href="appartamento/index.html">L&#x27;appartamento</a><a href="saas-fee/index.html">Saas-Fee</a><a href="prenotare/index.html">Prenotare</a></nav>
-    <ul class="langs" aria-label="Scegli la lingua"><li><a href="../en/index.html" hreflang="en" lang="en">EN</a></li><li><a href="../fr/index.html" hreflang="fr" lang="fr">FR</a></li><li><a href="../de/index.html" hreflang="de" lang="de">DE</a></li><li><a href="index.html" hreflang="it" lang="it" aria-current="true">IT</a></li></ul>
+    <a class="brand" href="./"><img class="brand-mark" src="../img/blason-56.png" srcset="../img/blason-56.png 1x, ../img/blason-112.png 2x, ../img/blason-168.png 3x" width="49" height="56" alt="" decoding="async"><span class="brand-text">Bijou du Glacier<span>Saas-Fee · Vallese · Svizzera</span></span></a>
+    <nav class="site-nav" aria-label="Navigazione principale"><a href="./" aria-current="page">Panoramica</a><a href="appartamento/">L&#x27;appartamento</a><a href="saas-fee/">Saas-Fee</a><a href="prenotare/">Prenotare</a></nav>
+    <ul class="langs" aria-label="Scegli la lingua"><li><a href="../en/" hreflang="en" lang="en">EN</a></li><li><a href="../fr/" hreflang="fr" lang="fr">FR</a></li><li><a href="../de/" hreflang="de" lang="de">DE</a></li><li><a href="./" hreflang="it" lang="it" aria-current="true">IT</a></li></ul>
     <a class="header-cta" href="https://bijouduglacier.com/book-direct" rel="noopener">Prenota diretto</a>
   </div>
 </header>
@@ -363,7 +363,7 @@
         <p>Bijou du Glacier occupa l'estremità est del secondo piano della Residence du Glacier, un edificio ristrutturato da cima a fondo, nel cuore stesso del villaggio. Quattro camere, ognuna con il proprio letto king size su un materasso Hypnos, la propria finestra e la propria luce del mattino. Tre bagni in pietra chiara e ardesia scura: due con vasca profonda, il terzo con doccia walk-in.</p>
         <p>E un unico, lungo ambiente aperto. Cucina, soggiorno e un'asse di noce a bordo naturale dove tutti e otto siedono insieme, così il gruppo resta unito invece di disperdersi fra i piani.</p>
         <p>E poi c'è il balcone. Corre lungo tutta la facciata dell'appartamento, coperto e rivolto dritto verso le montagne. Sedute comode, il sole del pomeriggio finché la luce non lascia le cime, e tredici cime oltre i quattromila che pensano all'intrattenimento.</p>
-        <p><a href="appartamento/index.html">La visita, stanza per stanza</a>.</p>
+        <p><a href="appartamento/">La visita, stanza per stanza</a>.</p>
       </div>
       <figure><picture><source type="image/avif" srcset="../img/living-wide-480.avif 480w, ../img/living-wide-720.avif 720w" sizes="(min-width: 900px) 46vw, 92vw"><img src="../img/living-wide-720.jpg" srcset="../img/living-wide-480.jpg 480w, ../img/living-wide-720.jpg 720w" sizes="(min-width: 900px) 46vw, 92vw" width="720" height="480" alt="Soggiorno e zona pranzo dell&#x27;appartamento di quattro camere a Saas-Fee visti insieme, con alte finestre sul villaggio innevato e sulle montagne." loading="lazy" decoding="async"></picture><figcaption>Soggiorno e cucina, aperti l&#x27;uno sull&#x27;altra.</figcaption></figure>
     </div>
@@ -415,7 +415,7 @@
         <p class="lede">Niente auto. Niente motori. E un ghiacciaio proprio sopra, che si scia a luglio con la stessa naturalezza di gennaio.</p>
         <p>Saas-Fee sta a 1800 metri dentro un ferro di cavallo di tredici cime oltre i quattromila, ed è chiusa al traffico da decenni. Gli ospiti lasciano l'auto all'ingresso e proseguono a piedi. Quello che resta è un villaggio che suona come dovrebbero suonare i villaggi di montagna.</p>
         <p>Sopra, il Metro Alpin sale dentro la montagna fino al ghiacciaio dell'Allalin, a 3500 metri, dove la neve tiene tutto l'anno. È il motivo per cui ad agosto ci si allenano le squadre nazionali, e per cui la vostra stagione non finisce mai del tutto.</p>
-        <p><a href="saas-fee/index.html">Sci, estate e come arrivare</a>.</p>
+        <p><a href="saas-fee/">Sci, estate e come arrivare</a>.</p>
       </div>
     </div>
   </div>
@@ -469,7 +469,7 @@
       </div>
       <div>
         <h2>Esplora</h2>
-        <ul><li><a href="index.html">Panoramica</a></li><li><a href="appartamento/index.html">L&#x27;appartamento</a></li><li><a href="saas-fee/index.html">Saas-Fee</a></li><li><a href="prenotare/index.html">Prenotare</a></li></ul>
+        <ul><li><a href="./">Panoramica</a></li><li><a href="appartamento/">L&#x27;appartamento</a></li><li><a href="saas-fee/">Saas-Fee</a></li><li><a href="prenotare/">Prenotare</a></li></ul>
       </div>
       <div>
         <h2>Prenotare</h2>
@@ -478,22 +478,5 @@
     </div>
   </div>
 </footer>
-<script>
-/* Progressive enhancement only. The .js class is added by this script, and the
-   stylesheet only hides .reveal elements once that class exists. If this never
-   runs, the page renders complete and static. No dependency, no CDN. */
-(function () {
-  var d = document.documentElement;
-  if (!("IntersectionObserver" in window)) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  d.className += " js";
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
-    });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.04 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-})();
-</script>
 </body>
 </html>

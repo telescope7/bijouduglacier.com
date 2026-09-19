@@ -122,16 +122,25 @@ def url(page, lang, absolute=False):
 # ---------------------------------------------------------------------------
 # Relative paths.
 #
-# Every href, src and stylesheet link in the markup is DOCUMENT-RELATIVE and
-# spells out `index.html`, so the site can be browsed by double-clicking
-# website/index.html with no server at all. (Under file:// a link to a bare
-# directory shows a directory listing rather than the page, which is why the
-# filename is explicit.)
+# Every href, src and stylesheet link is DOCUMENT-RELATIVE, so the built tree
+# can be moved or served from anywhere.
 #
-# The absolute, clean URLs still appear where they matter for search — in
-# canonical, hreflang, OpenGraph, JSON-LD and sitemap.xml. Cloudflare Pages and
-# Netlify both 301 `/en/apartment/index.html` to `/en/apartment/`, so a crawler
-# following an internal link lands on the canonical form anyway.
+# Page links point at the DIRECTORY form (`../apartment/`), matching the
+# canonical exactly. They used to spell out `index.html` so the site could be
+# browsed by double-clicking website/index.html with no server; that was a nice
+# convenience and it cost real crawl budget. Every page carried fifteen links
+# to URLs the canonical tag tells Google not to index, and on a new domain
+# where Google is rationing crawl, that is budget spent on 301s instead of
+# content. nginx redirects the index.html form, so the old links also meant an
+# extra round trip on every internal click.
+#
+# The one exception is website/index.html, the root language picker. It keeps
+# explicit filenames: it is noindex, nginx 302s `/` to `/en/` so it is almost
+# never served, and it is the entry point for opening the build off the disk.
+#
+# Consequence: to preview locally, serve the folder rather than double-clicking
+# it. `python3 -m http.server 8080` in website/ is what INSTRUCTIONS.md says,
+# and it matches how the site is actually served.
 # ---------------------------------------------------------------------------
 
 _CUR = "."          # directory of the page being written, relative to website/
@@ -158,9 +167,46 @@ def asset(path):
     return out + "/" if p.endswith("/") and not out.endswith("/") else out
 
 
+def font_preloads():
+    """The two above-the-fold faces, read from the manifest fetch_fonts.py writes.
+
+    Not hardcoded, because the filenames depend on whether Google serves a
+    variable font (one file per subset) or static instances (one per weight),
+    and that is not ours to decide. If the manifest is missing, the build still
+    succeeds without preloads and audit.py reports it.
+    """
+    mf = os.path.join(WEB, "fonts", "manifest.json")
+    if not os.path.isfile(mf):
+        return None, None
+    with open(mf, encoding="utf-8") as fh:
+        m = json.load(fh)
+    return m.get("serif"), m.get("sans")
+
+
+def _font_preload_tags():
+    serif, sans = font_preloads()
+    tags = []
+    for f in (serif, sans):
+        if f:
+            tags.append('<link rel="preload" href="%s" as="font" '
+                        'type="font/woff2" crossorigin>' % asset("fonts/" + f))
+    return "\n".join(tags)
+
+
 def href(page, lang):
-    """Relative link to another page of the site, filename spelled out."""
-    return _rel(url(page, lang).strip("/") + "/index.html")
+    """Relative link to another page, in the canonical directory form.
+
+    `../apartment/`, not `../apartment/index.html`, so every internal link
+    matches the canonical tag and nginx never has to redirect one.
+
+    website/index.html is the exception — see the note above. It is identified
+    by _CUR being the site root, which only build_root() sets.
+    """
+    target = url(page, lang).strip("/")
+    if _CUR == ".":                       # the root language picker
+        return _rel(target + "/index.html")
+    rel_path = _rel(target)
+    return "./" if rel_path == "." else rel_path.rstrip("/") + "/"
 
 
 def esc(s):
@@ -834,9 +880,8 @@ def build_page(lang, page):
 <meta name="description" content="%(desc)s">
 <link rel="canonical" href="%(canonical)s">
 %(alts)s
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&amp;family=Inter:wght@400;500;600&amp;display=swap">
+%(font_preload)s
+<link rel="stylesheet" href="%(fontcss)s">
 <link rel="stylesheet" href="%(css)s">
 %(preload_hero)s
 <link rel="icon" type="image/png" sizes="32x32" href="%(fav)s">
@@ -870,28 +915,13 @@ def build_page(lang, page):
 %(body)s
 </main>
 %(footer)s
-<script>
-/* Progressive enhancement only. The .js class is added by this script, and the
-   stylesheet only hides .reveal elements once that class exists. If this never
-   runs, the page renders complete and static. No dependency, no CDN. */
-(function () {
-  var d = document.documentElement;
-  if (!("IntersectionObserver" in window)) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  d.className += " js";
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
-    });
-  }, { rootMargin: "0px 0px -8%% 0px", threshold: 0.04 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-})();
-</script>
 </body>
 </html>
 """ % {
         "lang": lang,
         "css": asset("styles.css"),
+        "fontcss": asset("fonts/fonts.css"),
+        "font_preload": _font_preload_tags(),
         "fav": asset("img/favicon-32.png"),
         "touch": asset("img/apple-touch-icon.png"),
         "title": esc(P["title"]),
@@ -936,6 +966,7 @@ def build_root():
 <title>Bijou du Glacier, Saas-Fee</title>
 <meta http-equiv="refresh" content="0; url=en/index.html">
 %s
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <meta name="theme-color" content="#22372B">

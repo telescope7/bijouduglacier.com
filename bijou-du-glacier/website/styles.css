@@ -780,20 +780,34 @@ a:hover { color: var(--ink); }
 .site-footer .footer-grid { padding-bottom: 0.5rem; }
 
 /* =============================================================================
-   Scroll reveal.
-   Deliberately fail-safe: everything is visible by default, and only becomes
-   hidden-then-revealed once the inline script has added .js to <html>. If the
-   script never runs, or the visitor asks for reduced motion, the page simply
-   renders normally.
+   Scroll reveal — CSS only.
+
+   This used to need an inline IntersectionObserver script. It doesn't any
+   more: a scroll-driven animation does the same job with no JavaScript, which
+   keeps the site at zero scripts and zero third-party requests.
+
+   Fail-safe by construction. Content is visible by default; the animation is
+   only applied inside @supports, so a browser that doesn't understand
+   animation-timeline simply shows the page as normal static content. Nothing
+   can leave an element stuck invisible.
+
+   Supported in Chrome/Edge 115+ and Safari 26+. Firefox shows the static
+   version, which is fine — it was never load-bearing.
    ========================================================================== */
 
-.js .reveal { opacity: 0; transform: translateY(18px); }
-.js .reveal.is-in {
-  opacity: 1; transform: none;
-  transition: opacity .7s var(--ease), transform .7s var(--ease);
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .js .reveal { opacity: 1; transform: none; }
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
 }
 
 /* ---------- print ---------- */
@@ -804,6 +818,6 @@ a:hover { color: var(--ink); }
   .hero, .reserve, .site-footer { background: none; color: #000; }
   .hero h1, .hero .lede, .hero-facts, .reserve h3, .reserve p { color: #000; }
   .btn { border: 1px solid #000; color: #000; background: none; }
-  .js .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 1; transform: none; animation: none; }
   a::after { content: " (" attr(href) ")"; font-size: 0.8em; }
 }

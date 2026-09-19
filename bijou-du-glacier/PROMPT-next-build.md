@@ -232,11 +232,16 @@ Acceptance: after deploy, hitting /book-direct in a browser lands on the SaasFee
 listing, and that hit is visible in the access log tagged distinctly from page views.
 
 ────────────────────────────────────────────────────────────────────────
-WORK ITEM 2 — Internal links should point at canonical URLs
+WORK ITEM 2 — Internal links should point at canonical URLs   [DONE 19 Sep 2026]
 ────────────────────────────────────────────────────────────────────────
 Every page canonicalises to e.g. https://bijouduglacier.com/en/ but every internal link
 points at /en/index.html — 15 per page across 17 pages. nginx already serves clean
 directory URLs (try_files $uri $uri/), so this is a generator-side change only.
+
+STATUS: completed. href() in tools/build_site.py now emits the directory form; audit.py
+fails the build if any page but the root picker links to index.html. Nothing to do here.
+
+Original brief follows.
 
 Update tools/build_site.py so internal links emit directory URLs (../apartment/, ../../fr/,
 ./ for self) instead of paths ending in index.html. This covers the main nav, the language
@@ -302,11 +307,19 @@ Validate the final JSON-LD against Google's Rich Results Test requirements for l
 tell me if anything is still missing for eligibility.
 
 ────────────────────────────────────────────────────────────────────────
-WORK ITEM 5 — Self-host the fonts
+WORK ITEM 5 — Self-host the fonts   [DONE 19 Sep 2026]
 ────────────────────────────────────────────────────────────────────────
 Cormorant Garamond and Inter currently load from fonts.googleapis.com. That's the only
 third-party request on the site: it's render-blocking, and it sends every visitor's IP to
 Google, which is a live GDPR/Swiss FADP problem for a site whose whole audience is European.
+
+STATUS: completed. tools/fetch_fonts.py downloads them; build_site.py links
+website/fonts/fonts.css and preloads the two above-the-fold faces; audit.py fails if
+any page references Google Fonts, if a font file is missing, or if one is a stub.
+The inline scroll-reveal script is gone too, replaced by a CSS scroll-driven
+animation, so the site now has zero script tags.
+
+Original brief follows.
 
 Self-host both. Subset to latin + latin-ext, woff2 only, only the weights actually used
 (check styles.css — don't ship weights nothing references). Put them in website/fonts/,

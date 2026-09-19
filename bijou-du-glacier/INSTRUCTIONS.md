@@ -32,7 +32,7 @@ bijou-du-glacier/
 │   ├── img/                     ← 27 photos × 2 formats × 3–4 widths,
 │   │                              plus blason.png and its header/favicon sizes
 │   ├── video/                   ← the hero walkthrough, 4 encodes (see Step 3b)
-│   └── fonts/                   ← README.md: type comes from Google Fonts now
+│   └── fonts/                   ← self-hosted woff2 + fonts.css (tools/fetch_fonts.py)
 ├── deploy/                      ← one command puts the site on the Linode. See Step 4.
 │   ├── README.md                ← DNS records you need first, and what to do when it breaks
 │   ├── inventory.ini            ← your server's IP. The only line you edit.
@@ -49,6 +49,7 @@ bijou-du-glacier/
 │   ├── apply_copy.py            ← puts your edited copy back in
 │   ├── build_images.py          ← regenerates img/ from the source photos
 │   ├── build_video.py           ← re-encodes the hero video from the .mp4 master
+│   ├── fetch_fonts.py           ← downloads the self-hosted webfonts. Run once.
 │   ├── build_site.py            ← regenerates the 16 pages
 │   ├── content_en|fr|de|it.py   ← the copy in code form. You should never need to open these.
 │   └── audit.py                 ← pre-flight checks. Run before every deploy.
@@ -77,13 +78,7 @@ The URL words are translated on purpose — that is worth real search traffic.
 
 ## Step 1 — Preview the site locally (2 minutes)
 
-**Simplest:** double-click `website/index.html`. It opens in your browser, bounces you to the
-English homepage, and every link, image and style works — no server needed. All the internal
-paths are document-relative for exactly this reason.
-
-**If you'd rather serve it properly** (worth doing once before you deploy, since it's how the
-host will serve it, and it's the only way to see the clean `/en/book/` URLs rather than
-`.../en/book/index.html`):
+**Serve the folder.** One command, and it matches exactly how the live site is served:
 
 ```bash
 cd "/Users/mthomas/sandbox/saas-fee-media/bijou-du-glacier/website"
@@ -91,6 +86,19 @@ python3 -m http.server 8080
 ```
 
 Then open <http://localhost:8080>. Press `Ctrl-C` in the terminal when you're done.
+
+> **This changed in September 2026.** The site used to be browsable by double-clicking
+> `website/index.html`, because every internal link spelled out `index.html`. That was a nice
+> convenience and it cost real crawl budget: each page carried fifteen links to URLs the
+> canonical tag tells Google *not* to index, and nginx had to 301 every one of them.
+>
+> Internal links are now the canonical directory form (`../apartment/`), so they match the
+> canonical tag exactly and never redirect. The trade-off is that `file://` shows a directory
+> listing instead of the page, so local preview needs the one-line server above.
+>
+> Double-clicking `website/index.html` still opens the language picker and still reaches the
+> four language homepages — that one file deliberately keeps explicit filenames. It's just
+> the pages past it that need the server.
 
 Things worth clicking through, either way:
 
@@ -109,10 +117,23 @@ cd "/Users/mthomas/sandbox/saas-fee-media/bijou-du-glacier/tools"
 python3 audit.py
 ```
 
+> **First time after pulling the September 2026 changes, run this once:**
+>
+> ```bash
+> cd "/Users/mthomas/sandbox/saas-fee-media/bijou-du-glacier/tools"
+> python3 fetch_fonts.py
+> ```
+>
+> The type is self-hosted now rather than loaded from Google, and the .woff2
+> files are not in the repo. Until you run it, `audit.py` fails loudly and
+> every page falls back to Georgia and Helvetica. It is a one-off.
+
 It checks all 17 pages for broken links, missing alt text, canonical and hreflang errors,
 duplicate titles, invalid JSON-LD and images without dimensions — and it walks the whole
-site from `index.html` the way a browser would with no server running, to prove you can
-still open it off the disk. `0 fail` means ship it. It will also keep reminding you about
+site from `index.html`, resolving directory links the way a web server does, to prove there
+are no broken internal links and no orphaned pages. It also fails the build if any page
+links to the non-canonical `index.html` form. `0 fail` means ship it. It will also keep
+reminding you about
 anything that still needs your attention before you deploy.
 
 ---
