@@ -8,6 +8,19 @@ image to attach and where the link goes.
 **Instagram's caption limit is 2,200 characters. Only the first ~125 show before "more", so
 the first line does all the work.**
 
+
+> **Posting these to Facebook: two changes every time.**
+>
+> 1. **"Link in bio" means nothing on Facebook.** Replace that line with the
+>    actual URL from the link map in `README.md`. Facebook will render it as a
+>    preview card using the site's OpenGraph image, so the post still gets a
+>    picture even if the upload misbehaves.
+> 2. **Trim the hashtags.** Twelve is right for Instagram and looks like spam on
+>    Facebook. Four or five is plenty.
+>
+> Both were done by hand for caption 1 on 22 November. Nothing in this file did
+> it automatically, so it has to be done again for each caption.
+
 ---
 
 ## 1 — Introducing the apartment

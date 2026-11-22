@@ -13,6 +13,29 @@ Abbreviations: **IG** Instagram · **FB** Facebook · **X** X/Twitter · **P** P
 
 ---
 
+## What has actually gone out
+
+Keep this table current. It is the only record of what has been posted; the grids
+below are a plan, not a log, and nothing else in this folder tracks state.
+
+| Date | Platform | Item | Notes |
+|---|---|---|---|
+| 22 Nov 2026 | Pinterest | pin 1 | to the "Saas-Fee, Switzerland" board |
+| 22 Nov 2026 | Instagram | IG cap 1 | single image, not the 4-image carousel |
+| 22 Nov 2026 | X | X 1 | with image |
+| 22 Nov 2026 | Facebook | IG cap 1, adapted | "Link in bio" swapped for the URL |
+
+**Week 1 is therefore four-sixths done, but all on one day rather than spread
+across the week.** Still to run from W1: **R post 1** (the walkthrough Reel),
+**X 6**, and **IG DE 1** — the first German post, which the README ranks as the
+single biggest gap.
+
+Resume the normal rhythm from the next scheduled day rather than catching up in
+a burst: six posts landing together reads like an account being set up, which is
+exactly what it was.
+
+---
+
 ## Weeks 1–4 — establish
 
 | | Mon | Wed | Thu | Fri | Sat | Sun |

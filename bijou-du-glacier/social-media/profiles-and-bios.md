@@ -349,10 +349,23 @@ nginx log.
    available on mobile". **The display name still reads "Matthew Thomas"** and
    there is no link in the bio, which matters because the posted caption says
    "Link in bio". All of this needs the phone app, about five minutes.
-2. **Four Pinterest boards still to create**: Modern Alpine Interiors, Luxury
-   Ski Apartments, Skiing the Allalin Glacier, Group Ski Trips. Only
-   "Saas-Fee, Switzerland" exists, created inline with pin 1. Pins 2-8 need
-   their boards before they can go up.
+2. ~~Four Pinterest boards still to create~~ — **done 22 November 2026.** All
+   five now exist and are public:
+
+   | Board | Pins |
+   |---|---|
+   | Saas-Fee, Switzerland | 1 (pin 1) |
+   | Modern Alpine Interiors | 0 |
+   | Luxury Ski Apartments | 0 |
+   | Skiing the Allalin Glacier | 0 |
+   | Group Ski Trips | 0 |
+
+   **Board descriptions are not set.** Pinterest's create-board dialog offers
+   only a name and a private toggle, so the descriptions listed earlier in this
+   file have to be added by editing each board afterwards. Worth doing, since
+   Pinterest indexes them, but it is four separate edits.
+
+   Pins 2-8 in `pinterest-pins.md` can now go up; each names its board.
 3. **Facebook Page username** still not offered by Facebook on a Page this new.
 4. ~~Website footer links and `sameAs`~~ — **done 22 November 2026.** All four
    accounts are linked from the footer of all 16 content pages in their own
