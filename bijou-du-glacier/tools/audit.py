@@ -25,17 +25,26 @@ ORIGIN = "https://bijouduglacier.com"
 # visitor clicks, not resources the browser fetches, so they cost no request
 # and no privacy. Anything else is a third-party dependency and fails the
 # audit: the site promises zero of those.
-ALLOWED_OUTBOUND_HOSTS = (
-    "schema.org", "www.w3.org",
-    "saasfeeholidays.com", "www.airbnb.com", "www.booking.com",
-)
-
 # The booking buttons point at paths on our own domain that nginx 302s out to
 # the platforms. They are real URLs but there is no file behind them, so the
 # link checker has to know not to look for one. Imported rather than retyped,
-# so build_site.py stays the single place the channels are defined.
+# so build_site.py stays the single place these are defined.
 sys.path.insert(0, HERE)
-from build_site import CHANNEL_PATHS, DESTINATIONS  # noqa: E402
+from build_site import CHANNEL_PATHS, DESTINATIONS, SOCIAL  # noqa: E402
+
+from urllib.parse import urlparse as _urlparse  # noqa: E402
+
+# Hosts an absolute URL in the markup is allowed to point at. Note these are
+# LINKS a visitor may choose to follow, not resources the page loads: nothing
+# here is fetched unless someone clicks. The check below exists to catch a
+# tracking pixel or a CDN script sneaking in, so the social profiles and the
+# booking listings are legitimate entries. Derived from build_site.py rather
+# than retyped, so adding a platform there cannot fail the build here.
+ALLOWED_OUTBOUND_HOSTS = tuple(sorted({
+    "schema.org", "www.w3.org",
+    *(_urlparse(u).netloc for u in DESTINATIONS.values()),
+    *(_urlparse(u).netloc for u in SOCIAL.values()),
+}))
 
 REDIRECT_PATHS = set(CHANNEL_PATHS.values())
 NGINX_TEMPLATE = os.path.abspath(

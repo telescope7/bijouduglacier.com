@@ -775,6 +775,32 @@ a:hover { color: var(--ink); }
 }
 .site-footer ul { list-style: none; margin: 0; padding: 0; }
 .site-footer li { margin-bottom: 0.5rem; }
+/* The social row under the brand block. A horizontal list rather than a
+   fourth grid column, so the 1.6fr 1fr 1fr footer grid is left alone. Text,
+   not icons: four wordmarks would mean four more image requests on every page
+   of the site, and the names read perfectly well at this size. */
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  font-size: 0.82rem;
+}
+.footer-social li { margin: 0; }
+.footer-social a {
+  color: var(--on-dark-2);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+.footer-social a:hover,
+.footer-social a:focus-visible {
+  color: var(--champagne);
+  border-bottom-color: var(--champagne);
+}
+
 .site-footer a { color: var(--on-dark-2); text-decoration: none; }
 .site-footer a:hover { color: var(--champagne); }
 .site-footer .footer-grid { padding-bottom: 0.5rem; }

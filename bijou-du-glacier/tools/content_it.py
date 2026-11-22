@@ -584,6 +584,7 @@ IT = {
     },
 
     "footer": {
+        "follow": "Seguici",
         "explore": "Esplora",
         "book": "Prenotare",
         "contact": "L'immobile",

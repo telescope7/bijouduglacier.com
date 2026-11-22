@@ -66,6 +66,24 @@ DESTINATIONS = {
     "booking": "https://www.booking.com/hotel/ch/saasfeeholidays-du-glacier-b4.html",
 }
 
+# The property's own social accounts. One handle everywhere, `bijouduglacier`,
+# registered 21 November 2026.
+#
+# Facebook is the numeric profile.php form because Facebook will not grant a
+# Page a custom username until it has 25 likes. Once it does, that URL becomes
+# facebook.com/bijouduglacier and the numeric one keeps redirecting, so this
+# can be updated at leisure rather than urgently.
+#
+# These are real outbound links, unlike the booking buttons: there is nothing
+# to measure about them that the referrer on the way back would not tell us,
+# and routing them through /go/ would be tracking for its own sake.
+SOCIAL = {
+    "Instagram": "https://www.instagram.com/bijouduglacier/",
+    "Facebook":  "https://www.facebook.com/profile.php?id=61596559180995",
+    "Pinterest": "https://www.pinterest.com/bijouduglacier/",
+    "X":         "https://x.com/bijouduglacier",
+}
+
 # The first-party path each destination is reached through.
 CHANNEL_PATHS = {
     "direct":  "/book-direct",
@@ -511,6 +529,9 @@ def build_footer(L, lang):
         for n, u in [(L["ui"]["book_cta_short"], SITE["direct"]),
                      ("Airbnb", SITE["airbnb"]),
                      ("Booking.com", SITE["booking"])])
+    social = "".join(
+        '<li><a href="%s" rel="noopener me">%s</a></li>' % (u, esc(n))
+        for n, u in SOCIAL.items())
     b = asset("img/")
     mark = ('<img class="footer-mark" src="%sblason-112.png" '
             'srcset="%sblason-112.png 1x, %sblason-168.png 2x" '
@@ -526,6 +547,7 @@ def build_footer(L, lang):
           <p class="footer-brand">%s</p>
           <p>%s</p>
           <p><a href="%s">bijouduglacier.com</a></p>
+          <ul class="footer-social" aria-label="%s">%s</ul>
         </div>
       </div>
       <div>
@@ -540,6 +562,7 @@ def build_footer(L, lang):
   </div>
 </footer>""" % (
         mark, esc(SITE["name"]), esc(f["address"]), SITE["origin"],
+        esc(f["follow"]), social,
         esc(f["explore"]), explore,
         esc(f["book"]), booking,
     )
@@ -690,7 +713,11 @@ def lodging_node(L, lang):
         # engine "this listing and that listing are the same property"; aiming
         # it at our own 302 would break exactly the association it is there to
         # make, and /go/ is disallowed in robots.txt besides.
-        "sameAs": list(DESTINATIONS.values()),
+        # The booking listings plus the social profiles. sameAs is exactly the
+        # property for this: it tells a search engine that these accounts and
+        # this listing all describe the same thing, which is how the brand gets
+        # consolidated into one entity rather than five unconnected pages.
+        "sameAs": list(DESTINATIONS.values()) + list(SOCIAL.values()),
         # floorSize now lives on containsPlace, which is where Google reads it.
         "checkinTime": "15:00",
         "isAccessibleForFree": False,

@@ -2,6 +2,19 @@
 
 Everything below is copy-paste. Nothing needs rewording.
 
+> **Decisions made 21 November 2026:**
+> - **Doing now:** Instagram, Facebook, Pinterest. X and TikTok deferred, though the
+>   handle is still checked on X first, because its 15-character limit is what
+>   constrains the choice everywhere else.
+> - **Public contact address: `hello@bijouduglacier.com`**, forwarding to Matt's
+>   personal inbox. The domain's MX records already point at Porkbun's forwarders,
+>   so this is an alias to create, not a mail system to set up. The personal
+>   address stays off all public profiles.
+> - **Handle: one string everywhere.** Target `bijouduglacier`; if X has it, take
+>   the same fallback on all three rather than a different name per platform.
+> - **The site will link to these** from the footer in all four languages, plus
+>   `sameAs` in the structured data, once the accounts have some content on them.
+
 Do this before you post anything. A post that lands on an empty profile with no bio and no
 link converts nobody, and you only get one first impression per visitor.
 
@@ -44,7 +57,12 @@ https://bijouduglacier.com
 ```
 
 **Category:** Vacation Home Rental
-**Contact:** add the email once you've decided on it — see `PROMPT-next-build.md` item 3.
+
+**Contact email:**
+
+```
+hello@bijouduglacier.com
+```
 
 > Switch to a **Professional account → Business**. It's free, it unlocks Insights, and it lets
 > you add the contact button. Do it before you post.
@@ -56,8 +74,13 @@ https://bijouduglacier.com
 **Page name:**
 
 ```
-Bijou du Glacier — Saas-Fee
+Bijou du Glacier - Saas-Fee
 ```
+
+> **Plain hyphen, not an em dash.** Facebook rejects `—` in Page names outright:
+> *"The name 'Bijou du Glacier — Saas-Fee' is invalid. We suggest 'Bijou du
+> Glacier - Saas-Fee'."* Found the hard way on 21 November 2026. The hyphen form
+> is what the live Page uses.
 
 **Username:** `@bijouduglacier` (see `handles.md` for fallbacks)
 
@@ -73,6 +96,12 @@ A newly renovated four-bedroom apartment for eight in car-free Saas-Fee, Valais.
 
 ```
 https://bijouduglacier.com
+```
+
+**Contact email:**
+
+```
+hello@bijouduglacier.com
 ```
 
 **About / long description:**
@@ -190,6 +219,7 @@ tap from German.
 - [ ] Instagram and TikTok switched to Business accounts
 - [ ] Pinterest domain claimed
 - [ ] All handles recorded in `handles.md` so you don't have to remember them
+- [ ] `hello@bijouduglacier.com` created in Porkbun and **tested by sending it a mail**
 
 ---
 
@@ -202,3 +232,135 @@ worth.
 
 Linking *from* your own social profiles *to* your site is entirely fine. It's the direction
 into the OTAs that's restricted.
+
+
+---
+
+## Status — 21 November 2026
+
+### Facebook: Page created and configured
+
+**https://www.facebook.com/profile.php?id=61596559180995**
+
+| Field | Value |
+|---|---|
+| Page name | `Bijou du Glacier - Saas-Fee` (hyphen, see above) |
+| Category | Vacation Home Rental |
+| Profile picture | `website/img/blason.png` |
+| Cover photo | `website/img/massif-1200.jpg` |
+| Website | `https://bijouduglacier.com` |
+| Contact email | `hello@bijouduglacier.com` |
+| Bio | the 255-character short description, 236 used |
+
+**Deliberately left undone, and why:**
+
+- **Username `@bijouduglacier` is NOT set, and Facebook does not currently offer
+  the field.** `bijouduglacier` was confirmed free and registered on X, Instagram
+  and Facebook on 21 November, so the string is settled. But on this Page the
+  username control could not be found in Page setup, in "How people find and
+  contact you", in Page details, or in the About editor. Facebook commonly
+  withholds a custom username on a brand-new Page until it has some age or
+  activity. Check again after the first few posts, or set it from Meta Business
+  Suite. Until then the Page URL stays the numeric `profile.php?id=` form.
+- **Street address left blank.** This file never specified one for Facebook, and
+  publishing the exact address on the Page is the owner's call, not a default.
+  It is already public in the site footer and the structured data.
+- **Hours left unset**, which shows no hours rather than implying a staffed reception.
+- **WhatsApp not connected** — it sends a verification code to a phone.
+- **Friends not invited** — that sends messages on the owner's behalf.
+- **Meta marketing emails turned OFF.** They default to on.
+
+### X: profile configured — 21 November 2026
+
+**https://x.com/bijouduglacier**
+
+| Field | Value |
+|---|---|
+| Handle | `@bijouduglacier` (registered by Matt) |
+| Display name | `Bijou du Glacier` — **was "Matthew Thomas"**, the registration default |
+| Bio | the 160-character bio from this file, 149 used |
+| Location | `Saas-Fee, Valais, Switzerland` |
+| Website | `https://bijouduglacier.com` |
+| Avatar | the crest, already uploaded by Matt |
+| Header | `website/img/massif-1200.jpg` |
+
+X rewrites the website field as a `t.co` short link in the profile display. That
+is normal and the click still lands on the site, so it still shows up in the
+nginx log.
+
+### Still to do
+
+1. **Pinterest — not started.** Nothing exists yet: no account, no boards, no
+   domain claim. This is the platform the README ranks highest for return per
+   hour, so it is the biggest remaining gap. Needs a Business account, the five
+   boards in the order listed above, and the domain claimed via a DNS TXT record
+   at Porkbun.
+2. **Instagram** — account registered, profile picture awaiting validation.
+   Threads comes free with it and is worth claiming at the same time.
+3. **Facebook Page username** — see above; Facebook is not currently offering the
+   field on a Page this new. Retry after the first few posts.
+4. **Website footer links and `sameAs`.** The site still links to no social
+   account and the structured data lists only the three booking channels. Worth
+   doing once Instagram is live and the Facebook Page has a real username, so
+   the footer does not have to carry a `profile.php?id=` URL.
+5. **Nothing has been posted yet.** `posting-calendar.md` is an eight-week plan
+   that has not started.
+
+### Done
+
+- `hello@bijouduglacier.com` created and tested, 21 November 2026.
+- `bijouduglacier` registered on X, Instagram and Facebook — one string
+  everywhere, as planned.
+- X profile fully configured. Facebook Page created and configured apart from
+  the username.
+
+
+---
+
+## Status — 22 November 2026: all four accounts live and posted
+
+| Platform | Profile | First post |
+|---|---|---|
+| X | `@bijouduglacier` — name, bio, location, website, header, crest | tweets.md post 1, with image |
+| Facebook | Page configured; bio, website, `hello@` contact, crest, cover | captions-instagram.md caption 1, adapted, with image |
+| Pinterest | `pinterest.com/bijouduglacier` — crest, About, **domain verified** | pinterest-pins.md pin 1, to the "Saas-Fee, Switzerland" board |
+| Instagram | `@bijouduglacier` — crest and bio | caption 1, single image |
+
+### Things found the hard way
+
+- **Pinterest ignores programmatically set field values.** Setting them leaves
+  the text visible but the Save button disabled, because its React state never
+  updates. Everything has to be typed as real keystrokes. Budget for that.
+- **The Pinterest username saved as `bijouduglacir`** at one point, missing an
+  "e", and had to be retyped. Worth re-reading any Pinterest field after saving.
+- **The Pinterest display name in this file is impossible.** Pinterest splits
+  Name into first/last at the first space and caps each at 30 characters, so
+  `Bijou du Glacier | Luxury Apartment, Saas-Fee` is rejected: the "last name"
+  part is 39. The live name is `Bijou du Glacier, Saas-Fee`. The keywords live
+  in the About field instead, which Pinterest also indexes.
+- **Facebook rejects em dashes in Page names.** The Page is
+  `Bijou du Glacier - Saas-Fee`, with a hyphen.
+
+### Outstanding
+
+1. **Instagram: name, category, contact email and Business account are not set.**
+   Instagram's *web* profile editor only exposes Bio and Website, and the
+   Website field is disabled with the notice "Editing your links is only
+   available on mobile". **The display name still reads "Matthew Thomas"** and
+   there is no link in the bio, which matters because the posted caption says
+   "Link in bio". All of this needs the phone app, about five minutes.
+2. **Four Pinterest boards still to create**: Modern Alpine Interiors, Luxury
+   Ski Apartments, Skiing the Allalin Glacier, Group Ski Trips. Only
+   "Saas-Fee, Switzerland" exists, created inline with pin 1. Pins 2-8 need
+   their boards before they can go up.
+3. **Facebook Page username** still not offered by Facebook on a Page this new.
+4. ~~Website footer links and `sameAs`~~ — **done 22 November 2026.** All four
+   accounts are linked from the footer of all 16 content pages in their own
+   language (Follow / Folgen / Suivre / Seguici), and all four are listed in
+   `sameAs` alongside the three booking channels. The root `index.html` is a
+   noindex redirect stub with no footer, so it is correctly excluded.
+   The Facebook link is the numeric `profile.php?id=` form because Facebook
+   withholds a Page username until 25 likes; it will keep redirecting once the
+   username exists, so update `SOCIAL` in `build_site.py` at leisure.
+   **Not yet deployed** — run the playbook to put it live.
+5. **Nothing from week 1 of `posting-calendar.md` beyond these first posts.**

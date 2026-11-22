@@ -2,9 +2,18 @@
 
 Ranked best-first for each platform.
 
-> **Availability has not been checked.** None of these have been verified against the live
-> platforms — that cannot be done from here. Check each one manually before you commit
-> (see the registration order at the bottom).
+> **SETTLED, 21 November 2026.** `bijouduglacier` was available and is registered on
+> **X, Instagram and Facebook**. One string everywhere, exactly as the principle below
+> intends. The fallbacks listed further down are now historical: keep them only in case a
+> future platform has the name taken.
+>
+> | Platform | Handle | State |
+> |---|---|---|
+> | X | `@bijouduglacier` | live, profile configured |
+> | Instagram | `bijouduglacier` | registered, profile picture in validation |
+> | Facebook | `bijouduglacier` | registered; the **Page** username is not yet settable |
+> | Pinterest | — | not started |
+> | TikTok | — | deferred |
 
 ---
 

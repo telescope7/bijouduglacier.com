@@ -584,6 +584,7 @@ DE = {
     },
 
     "footer": {
+        "follow": "Folgen",
         "explore": "Entdecken",
         "book": "Buchen",
         "contact": "Das Objekt",

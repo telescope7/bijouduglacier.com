@@ -586,6 +586,7 @@ EN = {
     },
 
     "footer": {
+        "follow": "Follow",
         "explore": "Explore",
         "book": "Book",
         "contact": "The property",

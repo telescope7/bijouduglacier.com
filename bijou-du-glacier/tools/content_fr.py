@@ -585,6 +585,7 @@ FR = {
     },
 
     "footer": {
+        "follow": "Suivre",
         "explore": "Explorer",
         "book": "Réserver",
         "contact": "L'objet",
